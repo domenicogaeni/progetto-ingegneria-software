@@ -1,5 +1,3 @@
-# Introduzione
-
 # Progetto di ingegneria del software, anno accademico 2021-22
 
 ## 👷🏼 Membri del team
