@@ -3,7 +3,7 @@
 ## 👷🏼 Membri del team
 
 - Domenico Gaeni, matricola 1065107
-- Fabio Palazzi, matricola
+- Fabio Palazzi, matricola 1066365
 - Paolo Mazzoleni, matricola
 
 ## 🏗️ Struttura del progetto
