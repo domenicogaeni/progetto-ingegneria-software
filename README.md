@@ -4,7 +4,7 @@
 
 - Domenico Gaeni, matricola 1065107
 - Fabio Palazzi, matricola 1066365
-- Paolo Mazzoleni, matricola
+- Paolo Mazzoleni, matricola 1057949
 
 ## 🏗️ Struttura del progetto
 
