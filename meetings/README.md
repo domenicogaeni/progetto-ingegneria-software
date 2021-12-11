@@ -4,4 +4,5 @@ All'interno di questa cartella ci saranno dei file a seconda dei vari meeting ch
 
 Elenco dei meeting:
 
-🤝🏼 [3/12/2021](03_12_2021/README.md)
+- 🤝🏼 [03/12/2021](03_12_2021/README.md)
+- 🤝🏼 [10/12/2021](10_12_2021/README.md)
