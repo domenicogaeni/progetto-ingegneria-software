@@ -8,6 +8,21 @@
 
 4.  **Standards, guidelines, procedures** @Fabio Palazzi
 
+    Il team ha deciso di sviluppare un'applicazione web per implementare il sistema descritto. L'applicazione sarà suddivisa in due parti: 
+    
+    - **front-end** - si occupa dell'interfaccia grafica e dell'interazione con il back-end;
+    - **back-end** - mette a disposizione delle API che verranno utilizzate dal front-end.
+    
+    Il ***front-end*** verrà sviluppato utilizzando HTML 5 / CSS, in particolare utilizzando la libreria Bootstrap ([documentazione](https://getbootstrap.com/)) e la libreria di javascript JQuery ([documentazione](https://api.jquery.com/)) per gestire le chiamate (API) al back-end e manipolare i dati da mostrare e salvare.
+    
+    Il ***back-end*** invece è implementato utilizzando il linguaggio PHP 8 basandoci sul framework [Lumen](https://lumen.laravel.com/) e si occuperà di mettere a disposizione del front-end la manipolazione dei dati. Sarà compito del back-end interfacciarsi con il database e manipolare i dati in modo sicuro, utilizzando l'ORM (Object Relational Mapping) che risolve problemi quali query Injection.
+    
+    Abbiamo inoltre concordato, di utilizzare un database relazionale e abbiamo scelto in particolare un MySQL. Nonostante un database non relazionale offra tempi di risposta migliori (soprattutto al crescere delle dimensioni dei dati da memorizzare), abbiamo deciso di utilizzare un db relazionale perché più affidabile e perché non rilassa le proprietà ACID.
+    
+    Il prototipo che consegneremo al cliente sarà hostato su Altervista, sia per motivi economici sia perché offre tutte le funzionalità utili per realizzarlo.
+    
+    All'atto dell'autenticazione verrà creato un token univoco a livello di utente. Una volta autenticato, ad ogni chiamata al back-end verrà inserito nell'header della richiesta il token creato al fine di verificare se il cliente si è effettivamente loggato e sta usufruendo dei servizi cui può accedere.
+
 5.  **Management activities** @Paolo Mazzoleni
 
 6.  **Rischi** @Domenico Gaeni
