@@ -28,6 +28,15 @@
 6.  **Rischi** @Domenico Gaeni
 
 7.  **Staffing** @Fabio Palazzi
+    
+    Utilizzando una modalità di sviluppo AGILE, non c'è una vera e propria distinzione fra i ruoli nel team. Inoltre, i task, decisi in comune accordo con il project manager, verranno inseriti come issue su Github e designati ad un programmatore. Nonostante questo, in una panoramica più generale possiamo definire i seguenti ruoli:
+    
+    - Project Manager: Paolo Mazzoleni
+    - Progettista Software: Fabio Palazzi
+    - Progettista Database: Domenico Gaeni
+    - Back-end Developer: Domenico Gaeni
+    - Front-end Developer: Fabio Palazzi
+    - Tester: Paolo Mazzoleni
 
 8.  **Methods and techniques** @Fabio Palazzi
 
