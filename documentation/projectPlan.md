@@ -42,6 +42,11 @@ Inoltre, Mario ha la necessità di avere la documentazione riguardante il prodot
 
 3.  **Organizzazione del progetto** @Domenico Gaeni
 
+    Le persone coinvolte nel progetto sono quattro: il cliente Mario, e il team di progettisti/sviluppatori, formato da Domenico, Fabio e Paolo. Di seguito saranno descritti i loro ruoli e le loro mansioni.
+
+    L'intera documentazione riguardante il progetto sarà riportata e tracciata su GitHub. In particolare, il team si incontra settimanalmente per analizzare il lavoro svolto dall'ultimo meet e pianificare le attività future, tracciando i task come issue su GitHub in modo che ogni persona del team sia al corrente di cosa stiano facendo gli altri.
+    Al repository GitHub inoltre avrà accesso anche il nostro cliente Mario che interagirà con noi e si assicurerà lui stesso che lo sviluppo vada come previsto.
+
 4.  **Standards, guidelines, procedures** @Fabio Palazzi
 
 5.  **Management activities** @Paolo Mazzoleni
