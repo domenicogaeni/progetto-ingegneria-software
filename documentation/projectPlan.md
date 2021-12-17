@@ -39,7 +39,17 @@
     - Tester: Paolo Mazzoleni
 
 8.  **Methods and techniques** @Fabio Palazzi
-
+    
+    Per iniziare, il team si incontrerà per approvare lo ***USE-CASE DIAGRAM*** (precedentemente modellato da project manager e concordato con il cliente) in modo da definire i casi d'uso ovvero le iterazioni fra le varie componenti.
+    
+    Per modellare il nostro sistema utilizziamo delle ***UML CLASS DIAGRAM**.* Questi diagrammi mostreranno le varie classi del nostro sistema ognuna delle quali conterrà attributi e metodi da implementare. Utilizzando tool esterni riusciremo, a partire dal ***UML CLASS DIAGRAM***, a generare lo scheletro del nostro codice, che sarà OOP (e verrà implementato lato back-end).
+    
+    Sempre sfruttando la potenza di UML, genereremo anche più ***SEQUENCE DIAGRAM*** in modo da modellare le varie operazioni del sistema come uno scambio di messaggi fra le componenti precedentemente definite. I vari diagrammi forniranno così una linea guida dei passi per implementare ogni singola funzionalità.
+    
+    Per modellare i dati da salvare nel nostro db, utilizzeremo un **ER CLASS DIAGRAM** dove definiremo le varie tabelle da memorizzare e le varie relazioni (con le diverse cardinalità).
+    
+    Nel caso durante la fase di implementazione ci accorgessimo dell'impossibilità di implementare funzionalità con la specifica approvata, il team si incontrerà nuovamente al fine di trovare una soluzione funzionante e concordata anche con il cliente.
+    
 9.  **Quality assurance** @Paolo Mazzoleni
 
 10. **Work packages** @Domenico Gaeni
