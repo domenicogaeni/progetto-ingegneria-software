@@ -53,6 +53,11 @@ Inoltre, Mario ha la necessità di avere la documentazione riguardante il prodot
 
 6.  **Rischi** @Domenico Gaeni
 
+    La durata del lavoro è di circa 75 giorni e l'obiettivo è quello di arrivare al termine con tutta la documentazione e il prototipo definito insieme a Mario. In particolare ci sono due scadenze da rispettare: il 10 gennaio per la consegna della documentazione e il 31 gennaio per la consegna del codice.
+
+    Il rischio principale del progetto è che il nostro cliente non ci paghi la cifra pattuita insieme e di conseguenza di aver lavorato inutilmente. Per ridurre questo rischio abbiamo deciso insieme al cliente di suddividere il pagamento in due rate, i dettagli sono definiti nel punto 12 del presente documento.
+    Facendo due tranches del pagamento abbassiamo il rischio in quanto se il cliente non ci paga la prima parte del lavoro possiamo fermare lo sviluppo del prototipo risparmiando così ore di lavoro.
+
 7.  **Staffing** @Fabio Palazzi
 
 8.  **Methods and techniques** @Fabio Palazzi
