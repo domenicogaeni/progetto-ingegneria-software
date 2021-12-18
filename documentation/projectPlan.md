@@ -77,6 +77,15 @@ Inoltre, Mario ha la necessità di avere la documentazione riguardante il prodot
 
 12. **Budget & schedule** @Domenico Gaeni
 
+    La durata del progetto è di 75 giorni e durante questo periodo il team si concentrerà fondamentalmente su due grandi fasi, la prima di _progettazione_ e la seconda di _sviluppo_.
+    Il costo totale del lavoro sarà circa di 11.700€. Il prezzo è calcolato togliendo dal totale circa 10 giorni festivi (week-end e festività), quindi per un totale di 65 giorni. Il team è formato da 3 persone che lavorano part-time per un totale di 4 ore giornaliere. Ogni ora è pagata 15€ lordi.
+
+    Il costo totale è quindi definito dalla seguente espressione:
+    `65 giorni * 3 persone * 4 ore * 15 €/ora = 11.700€`
+
+    Insieme a Mario si è scelto di fare due trenches di pagamento, il 60% (pari a 7.020€) al termine della progettazione e il restante 40% (4.680€) a conclusione dei lavori. Si è scelto di dare più importanza alla documentazione in quanto verrà progettato l'intero sistema in tutte le sue funzionalità e di dare invece meno importanza allo sviluppo in quanto verrà sviluppato un prototipo con solo alcune funzionalità.
+    La consegna stimata della prima parte è attorno al 10 gennaio, mentre la data di fine lavori è attorno al 1 febbraio.
+
 13. **Changes** @Paolo Mazzoleni
 
 14. **Delivery** @Fabio Palazzi
