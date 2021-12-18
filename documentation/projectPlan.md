@@ -66,6 +66,13 @@ Inoltre, Mario ha la necessità di avere la documentazione riguardante il prodot
 
 10. **Work packages** @Domenico Gaeni
 
+    Il prototipo sviluppato sarà costituito da due parti principali, una front-end e una back-end. In questo modo tutta la parte relativa all'interfaccia grafica sarà presente nel codice del front-end e invece la parte di gestione dei dati e di interfaccia con il DB sarà gestita all'interno del back-end.
+
+    Il back-end è sviluppato con il framework `Lumen` che si basa a sua volta sul framework `Laravel` che implementa il pattern `MVC` (Model-View-Controller) anche se in verità la parte di view sarà implementata all'interno del front-end.
+
+    Nel back-end ci saranno quindi delle classi (_model_) che modelleranno le varie tabelle presenti nel DB e delle classi (_controller_) che manipolano i modelli a seconda del comportamento desiderato. Quindi, per esempio, in fase di registrazione di un nuovo utente ci saranno due classi `UserController` e `User`. Un metodo della classe `UserController` si occuperà di ricevere i dati dal front-end, di validarli a seconda del tipo e di creare una nuova istanza del modello `User`.
+    Inoltre il mondo PHP è diverso per quanto riguarda la gestione dei packages, infatti in questo linguaggio i modelli saranno presenti in una apposita cartella sotto il nome di `Model`, mentre i controller sotto la cartella `Controller`
+
 11. **Resources** @Fabio Palazzi
 
 12. **Budget & schedule** @Domenico Gaeni
