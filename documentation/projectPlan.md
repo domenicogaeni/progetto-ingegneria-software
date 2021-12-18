@@ -31,6 +31,23 @@
 
 9.  **Quality assurance** @Paolo Mazzoleni
 
+    Il team punta a sviluppare un software che rispetti i parametri di qualità indicati dal modello di McCall:
+    
+    - Correttezza
+    - Affidabilità
+    - Robustezza
+    - Integrità
+    - Usabilità
+    
+    Per garantire la sicurezza utilizziamo librerie moderne, aggiornate frequentemente e poco inclini ad avere vulnerabilità.
+    
+    Inoltre dividiamo il lato back-end da quello front-end, cosicché in futuro il cliente potrà assumere personale separato per lo sviluppo delle due parti.
+    
+    Puntiamo a sviluppare un software che, oltre a rispettare i quality assurance, sia anche sicuro:
+    
+    - verifica dell'indirizzo email: un utente, per completare il processo di registrazione, deve confermare i propri dati cliccando su un link apposito ricevuto via mail;
+    - doppia autenticazione tramite OTP: un utente, per poter accedere al proprio account, potrà richiedere che ogni accesso debba essere confermato tramite l'inserimento un codice univoco a tempo ricevuto per messaggio SMS.
+
 10. **Work packages** @Domenico Gaeni
 
 11. **Resources** @Fabio Palazzi
