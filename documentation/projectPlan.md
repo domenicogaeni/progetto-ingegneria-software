@@ -56,8 +56,14 @@
 
 11. **Resources** @Fabio Palazzi
 
+    Le risorse designate al progetto sono un project-manager più due sviluppatori che lo affiancano. Al team verrà inizialmente fornito un account *altervista.org* per rilasciare i primi delivery, poi all'atto della consegna, il sistema verrà migrato su un account *AWS* al fine di implementare anche funzionalità aggiuntive di sicurezza quali la doppia autenticazione tramite OTP e la verifica dell'indirizzo email. Al team saranno forniti 3 computer portatili MacBook PRO, una connessione internet in fibra ottica, una stanza e un ufficio per l'incontro con il cliente.
+
 12. **Budget & schedule** @Domenico Gaeni
 
 13. **Changes** @Paolo Mazzoleni
 
 14. **Delivery** @Fabio Palazzi
+
+    L'incontro con il cliente è fissato ogni settimana, il giorno può variare in base agli impegni ma abbiamo comunque stabilito una frequenza settimanale in modo da rimanere in stretto contatto con il cliente ed essere allineati alle sue richieste e opinioni. Abbiamo inoltre concordato una volta a settimana in modo da riuscire a capire meglio le esigenze  e consegnare un prodotto più vicino alle aspettative del cliente. Ad ogni incontro presenteremo dei prototipi ovvero delle schermate da noi sviluppate contenenti l'interfaccia grafica e poche funzionalità back-end così da mostrare le funzioni principali al cliente e in caso concordare dei cambiamenti. L'obiettivo mostrando questi prototipi sarà quello di discutere l'aspetto grafico con il cliente mostrandolo anche sui vari device (esempio Smartphone, Tablet, PC).
+    
+    I prototipi mostrati al cliente non avranno solo lo scopo di mostrare l'interfaccia grafica finale, ma verranno poi implementati dal team che aggiungerà il software necessario a raggiungere i requisiti specificati per ogni singola schermata.
