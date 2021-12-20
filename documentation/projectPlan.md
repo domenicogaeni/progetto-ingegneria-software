@@ -56,4 +56,12 @@
 
 13. **Changes** @Paolo Mazzoleni
 
+    Oltre alle feature base incluse inizialmente nel prodotto e descritte al punto uno di questo documento, l'obiettivo sarà quello di mettere le basi per ulteriori funzionalità allo scopo di fornire un servizio più completo, in accordo con Mario. Queste verranno inserite nelle successive versioni del software e includeranno:
+    
+    - un carrello, nel quale i clienti potranno inserire prodotti da acquistare ed effettuare un unico pagamento, a differenza di quello che avviene nella versione base del software nella quale è necessario effettuare un pagamento separato per ogni prodotto;
+    - liste desideri, nelle quali i clienti potranno inserire prodotti per eventuali acquisti futuri, con la possibilità di crearne più di una e ad ognuna assegnare un nome;
+    - una dashboard personalizzata per ogni cliente, che varierà in base all'autore/genere di libri acquistati in precedenza;
+    - la possibilità di salvare un metodo di pagamento (carta di debito/credito/prepagata) per poterla utilizzare negli acquisti futuri senza la necessità di inserirla ogni volta;
+    - la possibilità di acquistare buoni regalo con credito spendibile sul sito.
+
 14. **Delivery** @Fabio Palazzi
