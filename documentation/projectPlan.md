@@ -55,6 +55,21 @@ Inoltre, Mario ha la necessità di avere la documentazione riguardante il prodot
 
 4.  **Standards, guidelines, procedures** @Fabio Palazzi
 
+    Il team ha deciso di sviluppare un'applicazione web per implementare il sistema descritto. L'applicazione sarà suddivisa in due parti: 
+    
+    - **front-end** - si occupa dell'interfaccia grafica e dell'interazione con il back-end;
+    - **back-end** - mette a disposizione delle API che verranno utilizzate dal front-end.
+    
+    Il ***front-end*** verrà sviluppato utilizzando HTML 5 / CSS, in particolare utilizzando la libreria Bootstrap ([documentazione](https://getbootstrap.com/)) e la libreria di javascript JQuery ([documentazione](https://api.jquery.com/)) per gestire le chiamate (API) al back-end e manipolare i dati da mostrare e salvare.
+    
+    Il ***back-end*** invece è implementato utilizzando il linguaggio PHP 8 basandoci sul framework [Lumen](https://lumen.laravel.com/) e si occuperà di mettere a disposizione del front-end la manipolazione dei dati. Sarà compito del back-end interfacciarsi con il database e manipolare i dati in modo sicuro, utilizzando l'ORM (Object Relational Mapping) che risolve problemi quali query Injection.
+    
+    Abbiamo inoltre concordato, di utilizzare un database relazionale e abbiamo scelto in particolare un MySQL. Nonostante un database non relazionale offra tempi di risposta migliori (soprattutto al crescere delle dimensioni dei dati da memorizzare), abbiamo deciso di utilizzare un db relazionale perché più affidabile e perché non rilassa le proprietà ACID.
+    
+    Il prototipo che consegneremo al cliente sarà hostato su Altervista, sia per motivi economici sia perché offre tutte le funzionalità utili per realizzarlo.
+    
+    All'atto dell'autenticazione verrà creato un token univoco a livello di utente. Una volta autenticato, ad ogni chiamata al back-end verrà inserito nell'header della richiesta il token creato al fine di verificare se il cliente si è effettivamente loggato e sta usufruendo dei servizi cui può accedere.
+
 5.  **Management activities** @Paolo Mazzoleni
 
     Abbiamo deciso di organizzarci secondo la filosofia dello "swat team" (Skilled Workers with Avdanced Tools): gli incontri saranno settimanali e relativamente brevi, della durata di un'ora circa. Durante gli stessi potranno essere effettuate sessioni di brainstorming per condividere idee e risolvere problemi.
@@ -72,9 +87,28 @@ Inoltre, Mario ha la necessità di avere la documentazione riguardante il prodot
     Facendo due tranches del pagamento abbassiamo il rischio in quanto se il cliente non ci paga la prima parte del lavoro possiamo fermare lo sviluppo del prototipo risparmiando così ore di lavoro.
 
 7.  **Staffing** @Fabio Palazzi
+    
+    Utilizzando una modalità di sviluppo AGILE, non c'è una vera e propria distinzione fra i ruoli nel team. Inoltre, i task, decisi in comune accordo con il project manager, verranno inseriti come issue su Github e designati ad un programmatore. Nonostante questo, in una panoramica più generale possiamo definire i seguenti ruoli:
+    
+    - Project Manager: Paolo Mazzoleni
+    - Progettista Software: Fabio Palazzi
+    - Progettista Database: Domenico Gaeni
+    - Back-end Developer: Domenico Gaeni
+    - Front-end Developer: Fabio Palazzi
+    - Tester: Paolo Mazzoleni
 
 8.  **Methods and techniques** @Fabio Palazzi
-
+    
+    Per iniziare, il team si incontrerà per approvare lo ***USE-CASE DIAGRAM*** (precedentemente modellato da project manager e concordato con il cliente) in modo da definire i casi d'uso ovvero le iterazioni fra le varie componenti.
+    
+    Per modellare il nostro sistema utilizziamo delle ***UML CLASS DIAGRAM**.* Questi diagrammi mostreranno le varie classi del nostro sistema ognuna delle quali conterrà attributi e metodi da implementare. Utilizzando tool esterni riusciremo, a partire dal ***UML CLASS DIAGRAM***, a generare lo scheletro del nostro codice, che sarà OOP (e verrà implementato lato back-end).
+    
+    Sempre sfruttando la potenza di UML, genereremo anche più ***SEQUENCE DIAGRAM*** in modo da modellare le varie operazioni del sistema come uno scambio di messaggi fra le componenti precedentemente definite. I vari diagrammi forniranno così una linea guida dei passi per implementare ogni singola funzionalità.
+    
+    Per modellare i dati da salvare nel nostro db, utilizzeremo un **ER CLASS DIAGRAM** dove definiremo le varie tabelle da memorizzare e le varie relazioni (con le diverse cardinalità).
+    
+    Nel caso durante la fase di implementazione ci accorgessimo dell'impossibilità di implementare funzionalità con la specifica approvata, il team si incontrerà nuovamente al fine di trovare una soluzione funzionante e concordata anche con il cliente.
+    
 9.  **Quality assurance** @Paolo Mazzoleni
 
     Il team punta a sviluppare un software che rispetti i parametri di qualità indicati dal modello di McCall:
@@ -105,6 +139,8 @@ Inoltre, Mario ha la necessità di avere la documentazione riguardante il prodot
 
 11. **Resources** @Fabio Palazzi
 
+    Le risorse designate al progetto sono un project-manager più due sviluppatori che lo affiancano. Al team verrà inizialmente fornito un account *altervista.org* per rilasciare i primi delivery, poi all'atto della consegna, il sistema verrà migrato su un account *AWS* al fine di implementare anche funzionalità aggiuntive di sicurezza quali la doppia autenticazione tramite OTP e la verifica dell'indirizzo email. Al team saranno forniti 3 computer portatili MacBook PRO, una connessione internet in fibra ottica, una stanza e un ufficio per l'incontro con il cliente.
+
 12. **Budget & schedule** @Domenico Gaeni
 
     La durata del progetto è di 75 giorni e durante questo periodo il team si concentrerà fondamentalmente su due grandi fasi, la prima di _progettazione_ e la seconda di _sviluppo_.
@@ -127,3 +163,7 @@ Inoltre, Mario ha la necessità di avere la documentazione riguardante il prodot
     - la possibilità di acquistare buoni regalo con credito spendibile sul sito.
 
 14. **Delivery** @Fabio Palazzi
+
+    L'incontro con il cliente è fissato ogni settimana, il giorno può variare in base agli impegni ma abbiamo comunque stabilito una frequenza settimanale in modo da rimanere in stretto contatto con il cliente ed essere allineati alle sue richieste e opinioni. Abbiamo inoltre concordato una volta a settimana in modo da riuscire a capire meglio le esigenze  e consegnare un prodotto più vicino alle aspettative del cliente. Ad ogni incontro presenteremo dei prototipi ovvero delle schermate da noi sviluppate contenenti l'interfaccia grafica e poche funzionalità back-end così da mostrare le funzioni principali al cliente e in caso concordare dei cambiamenti. L'obiettivo mostrando questi prototipi sarà quello di discutere l'aspetto grafico con il cliente mostrandolo anche sui vari device (esempio Smartphone, Tablet, PC).
+    
+    I prototipi mostrati al cliente non avranno solo lo scopo di mostrare l'interfaccia grafica finale, ma verranno poi implementati dal team che aggiungerà il software necessario a raggiungere i requisiti specificati per ogni singola schermata.
