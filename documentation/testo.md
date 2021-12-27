@@ -6,7 +6,7 @@ In caso di password dimenticata, il sistema deve mandare un'email di reset passw
 
 Il sistema offre le seguenti funzionalità ai propri utenti:
 
-- Il venditore ha la possibilità di inserire un annuncio di vendita di un libro specificando: titolo, codice ISBN, autori, prezzo, quantità, genere.
+- Il venditore ha la possibilità di inserire un annuncio di vendita di un libro specificando: titolo, codice ISBN, autori, prezzo, genere.
 - Un utente ha la possibilità di ricercare dei libri tramite i seguenti criteri: titolo, autore, ISBN, genere;
 - Un utente ha la possibilità di acquistare un libro in vendita.
 In fase di check out deve essere specificato l'indirizzo di consegna (in caso sia diverso da quello specificato all'atto della registrazione) e il metodo di pagamento (Paypal, carta di credito). 
