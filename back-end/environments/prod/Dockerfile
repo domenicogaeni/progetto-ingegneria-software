@@ -14,13 +14,13 @@ ENV DB_USERNAME=$DB_USERNAME
 ENV DB_PASSWORD=$DB_PASSWORD
 
 # Copy source and install dependencies
-COPY . $APP_HOME
-COPY environments/prod/.env.example .env
+COPY ./back-end $APP_HOME
+COPY /back-end/environments/prod/.env.example .env
 RUN composer install
 
 # Clean
 RUN rm -rf .git .github .vscode database environments private tests \
-    .gitignore .php_cs.dist artisan captainhook.json composer.json composer.lock Dockerfile docker-compose.yml LICENSE phpunit-printer.yml phpunit.xml psalm.xml README.md
+    .gitignore .php_cs.dist artisan captainhook.json composer.json composer.lock Dockerfile docker-compose.yml LICENSE phpunit-printer.yml phpunit.xml psalm.xml README.md documentation front-end meeting back-end
 
 # Change ownership of our applications
 RUN chown -R www-data:www-data $APP_HOME
