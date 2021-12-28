@@ -1,24 +1,41 @@
-# Lumen PHP Framework
+# API - Documentazione
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
+## Introduzione
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+Le API sono sviluppate in **PHP 8.0** utilizzando come framework **Lumen 8.0** ([documentazione](https://lumen.laravel.com/docs/8.x)).
 
-## Official Documentation
+Il progetto è stato sviluppando con **Docker** ([documentazione](https://docs.docker.com/)).
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+## Prerequisiti
 
-## Contributing
+-   [Docker](https://www.docker.com/) (da installare sulla propria macchina seguendo la documentazione ufficiale a seconda del proprio sistema operativo).
+    Con Docker è possibile i container per poter sviluppare senza troppi problemi in locale.
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Non sono richiesti altri prerequisiti visto che il codice girerà all'interno dei singoli container.
 
-## Security Vulnerabilities
+## Setup dell'ambiente in locale
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+Come prima cosa dopo aver clonato la repo in locale eseguire i seguenti step:
 
-## License
+-   Creare un file `.env` a partire dal file `.env.example` (e.g. `cp .env.example .env`) e compilare con i valori segreti nelle variabili vuote.
+-   Avviare i servizi con Docker: `docker-compose up -d`. In questo modo vengono avviati i container, in particolare `lumen` e `database` (descritti in seguito). Eseguendo questo comando vengono create in automatico le tabelle su container `database` a partire dalle migrazioni.
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Infrastruttura in locale
+
+I container utilizzati per eseguire correttamente il progetto in locale sono descritti nel file `docker-compose.yml`.
+
+Di seguito vengono descritti brevemente i singoli servizi:
+
+-   `database`: si basa su un immagine `mysql 8`, vengono specificate le credenziali di accesso al db. Esse (`DB_PASSWORD` e `DB_DATABASE`) sono specificate nel `.env` e possono essere modificate a piacere.
+-   `lumen`: si basa su un'immagine `apache` con PHP 8.0 customizzata. La ricetta del container si può trovare nella cartella `environments`, all'interno della quale sono presenti 3 sottocartelle, ognuna contenente l'immagine Docker utilizzata a seconda del contesto:
+    -   `base`: ricetta base che viene estesa da `dev` e `prod`.
+    -   `dev`: ricetta utilizzata per lo sviluppo in locale. Estende l'immagine `base` e ci aggiunge le estensioni per `Xdebug` (per il debug di PHP). Viene utilizzata all'interno di `docker-compose.yml`.
+    -   `prod`: ricetta utilizzata per l'ambiente di produzione. Estende l'immagine `base` ed effettua alcune operazione di ottimizzazione, come per esempio cancellare i file e le cartelle inutili, copiare il `.env` con tutte le credenziali per l'accesso ai vari servizi, ed infine eseguire le migrazioni che andranno ad allineare il database di produzione con le nuove modifiche effettuate.
+        Su questo container viene eseguito il codice che scriviamo nella root del progetto, quindi le API che sviluppiamo "vivono" all'interno del container apache. Esse saranno raggiungibili in locale all'indirizzo: `localhost:{PHP_HOST_PORT}` (dove `PHP_HOST_PORT` è una variabile definita nel file `.env`, di default sarà 80). All'avvio del container vengono eseguiti alcuni comandi, quali:
+    -   `composer install`: scarica le dipendenze del progetto descritte nel `composer.json`
+    -   `php artisan migrate --force`: esegue le migrazioni in modo forzato. Questo significa che ogni volta che vengono avviati i container con `docker-compose up -d`, questo comando distruggerà tutte le tabelle e tutti i dati presenti nel DB in locale e li ricreerà nuovamente. Chiaramente se il container viene lasciato attivo, questo comando viene eseguito solo la prima volta. In alternativa si può omettere `--force` e verranno eseguite solo le migrazioni che non sono state mai eseguite. Questo comando può essere modificato a seconda delle esigenze.
+    -   `apache2-foreground`: esegue il sevizio di apache2 in foreground in modo che il container rimanga attivo, altrimenti esso si spegnerebbe nel momento in cui non c'è un processo attivo in esecuzione.
+
+## Deploy in produzione
+
+Continuare...
