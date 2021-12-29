@@ -19,7 +19,6 @@ class CreateCreditMethodsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
-            $table->primary('id');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

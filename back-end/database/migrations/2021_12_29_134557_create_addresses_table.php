@@ -20,7 +20,6 @@ class CreateAddressesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->primary('id');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

@@ -21,7 +21,6 @@ class CreateResellerReviewsTable extends Migration
             $table->unsignedBigInteger('user_id_reviewed');
             $table->timestamps();
 
-            $table->primary('id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('user_id_reviewed')->references('id')->on('users');
         });
