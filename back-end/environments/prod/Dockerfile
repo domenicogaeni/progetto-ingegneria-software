@@ -18,6 +18,9 @@ COPY ./back-end $APP_HOME
 COPY /back-end/environments/prod/.env.example .env
 RUN composer install
 
+# Run migrations
+RUN php artisan migrate --force
+
 # Clean
 RUN rm -rf .git .github .vscode database environments private tests \
     .gitignore .php_cs.dist artisan captainhook.json composer.json composer.lock Dockerfile docker-compose.yml LICENSE phpunit-printer.yml phpunit.xml psalm.xml README.md documentation front-end meeting back-end
