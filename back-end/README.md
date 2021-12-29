@@ -2,7 +2,7 @@
 
 ## Introduzione
 
-Le API sono sviluppate in **PHP 8.0** utilizzando come framework **Lumen 8.0** ([documentazione](https://lumen.laravel.com/docs/8.x)).
+Le API sono sviluppate in **PHP 8.0** utilizzando come framework **Lumen 8** ([documentazione](https://lumen.laravel.com/docs/8.x)).
 
 Il progetto è stato sviluppando con **Docker** ([documentazione](https://docs.docker.com/)).
 
@@ -38,4 +38,12 @@ Di seguito vengono descritti brevemente i singoli servizi:
 
 ## Deploy in produzione
 
-Continuare...
+Ogni volta che viene fatto un push sul branch master viene eseguito il deploy in produzione, eseguendo la Github Action presente nella repo descritta nel file `.github/workflows/deploy.yml`.
+
+Molto semplicemente all'interno della Github Action viene eseguito il checkout del codice, viene buildata l'immagine Docker di produzione, descritta all'interno del file `./environments/prod/Dockerfile` e viene caricata su Heroku. Per eseguire l'upload del codice vengono passate le credenziali di Heroku e le varie informazioni del DB che sono presenti come secrets su Github.
+
+Il database utilizzato è un PostgreSQL ed è incluso nel piano gratuito scelto per il progetto.
+
+Il link pubblico per le api è raggiungibile a questo url: https://ingegneria-software.herokuapp.com/public/
+
+Un domani si possono scegliere soluzioni più avanzate per l'ambiente di produzione, quale per esempio AWS o Google Cloud con i loro servizi. Utilizzando un'immagine Docker dove è presente il codice di produzione, il processo di deploy del codice è molto semplice sulle varie infrastrutture, infatti l'unico requisito che serve è che sia presente il Docker Engine sulla macchina.
