@@ -21,7 +21,7 @@ class PinFactory extends Factory
      */
     public function definition()
     {
-        return [            
+        return [
             'pin' => $this->faker->randomNumber(6),
             'expired_at' => $this->faker->dateTimeBetween('now', '+5 minutes'),
         ];

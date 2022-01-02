@@ -21,7 +21,7 @@ class BookReviewFactory extends Factory
      */
     public function definition()
     {
-        return [            
+        return [
             'description' => $this->faker->text,
             'vote' => $this->faker->numberBetween(1, 5),
         ];

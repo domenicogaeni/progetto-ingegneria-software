@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ResellerReview extends Model 
+class ResellerReview extends Model
 {
     use HasFactory;
 
@@ -18,8 +18,8 @@ class ResellerReview extends Model
      */
     protected $fillable = [
         'description',
-        'vote'
-    ];    
+        'vote',
+    ];
 
     public function reviewer()
     {

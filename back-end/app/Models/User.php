@@ -11,7 +11,9 @@ use Laravel\Lumen\Auth\Authorizable;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
-    use Authenticatable, Authorizable, HasFactory;
+    use Authenticatable;
+    use Authorizable;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -22,7 +24,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'name',
         'last_name',
         'email',
-        'phone'
+        'phone',
     ];
 
     /**
@@ -47,18 +49,18 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function payment_methods()
     {
         return $this->hasMany(PaymentMethod::class, 'user_id');
-    }    
+    }
 
     public function credit_methods()
     {
         return $this->hasMany(CreditMethod::class, 'user_id');
-    }    
+    }
 
     public function reset_password_tokens()
     {
         return $this->hasMany(ResetPasswordToken::class, 'user_id');
     }
-    
+
     public function books()
     {
         return $this->hasMany(Book::class, 'user_id');

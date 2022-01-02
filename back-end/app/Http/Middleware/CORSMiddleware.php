@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class CORSMiddleware
 {
@@ -13,6 +13,7 @@ class CORSMiddleware
      *
      * @param \Illuminate\Http\Request $request
      * @param \Closure                 $next
+     *
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
@@ -30,6 +31,7 @@ class CORSMiddleware
      * Determine if request is a preflight request.
      *
      * @param \Illuminate\Http\Request $request
+     *
      * @return bool
      */
     protected function isPreflightRequest($request)
@@ -52,19 +54,20 @@ class CORSMiddleware
      *
      * @param \Illuminate\Http\Request  $request
      * @param \Illuminate\Http\Response $response
+     *
      * @return Response
      */
     protected function addCorsHeaders($request, $response)
     {
         foreach ([
-                     'Access-Control-Allow-Origin' => '*',
-                     'Access-Control-Max-Age' => (60 * 60 * 24),
-                     'Access-Control-Allow-Headers' => $request->header('Access-Control-Request-Headers'),
-                     'Access-Control-Allow-Methods' => $request->header('Access-Control-Request-Methods')
-                         ?: 'GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS',
-                     'Access-Control-Allow-Credentials' => 'true',
-                     'Access-Control-Expose-Headers' => 'Content-Disposition',
-                 ] as $header => $value) {
+            'Access-Control-Allow-Origin' => '*',
+            'Access-Control-Max-Age' => (60 * 60 * 24),
+            'Access-Control-Allow-Headers' => $request->header('Access-Control-Request-Headers'),
+            'Access-Control-Allow-Methods' => $request->header('Access-Control-Request-Methods')
+                ?: 'GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS',
+            'Access-Control-Allow-Credentials' => 'true',
+            'Access-Control-Expose-Headers' => 'Content-Disposition',
+        ] as $header => $value) {
             $response->header($header, $value);
         }
 

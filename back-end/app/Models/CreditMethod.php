@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CreditMethod extends Model 
+class CreditMethod extends Model
 {
     use HasFactory;
 
@@ -17,8 +17,8 @@ class CreditMethod extends Model
      * @var array
      */
     protected $fillable = [
-        'iban',        
-    ];    
+        'iban',
+    ];
 
     public function user()
     {

@@ -13,7 +13,6 @@ class ResponseMiddleware
     {
         /** @var Request $request */
         /** @var Response $response */
-
         $response = $next($request);
 
         if (is_string($response->original) && Str::startsWith($response->original, '<!')) {
@@ -21,10 +20,11 @@ class ResponseMiddleware
         }
 
         $content = [];
-        if(is_array($response->original) && isset($response->original['error']))
+        if (is_array($response->original) && isset($response->original['error'])) {
             $content['error'] = $response->original['error'];
-        else
+        } else {
             $content['data'] = $response->original;
+        }
 
         $response->setContent(json_encode($content));
         $response->header('Content-Type', 'application/json');

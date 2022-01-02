@@ -21,8 +21,8 @@ class CreditMethodFactory extends Factory
      */
     public function definition()
     {
-        return [            
-            'iban' => $this->faker->iban(),            
+        return [
+            'iban' => $this->faker->iban(),
         ];
     }
 }

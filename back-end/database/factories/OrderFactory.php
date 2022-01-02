@@ -21,8 +21,8 @@ class OrderFactory extends Factory
      */
     public function definition()
     {
-        return [            
-            'status' => $this->faker->randomElement([Order::STATUS_PENDING, Order::STATUS_PROCESSING, Order::STATUS_SHIPPED, Order::STATUS_DELIVERED, Order::STATUS_DONE]),            
+        return [
+            'status' => $this->faker->randomElement([Order::STATUS_PENDING, Order::STATUS_PROCESSING, Order::STATUS_SHIPPED, Order::STATUS_DELIVERED, Order::STATUS_DONE]),
         ];
     }
 }

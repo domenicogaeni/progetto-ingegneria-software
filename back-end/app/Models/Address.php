@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Address extends Model 
+class Address extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'addresses';
 
@@ -18,8 +19,8 @@ class Address extends Model
      * @var array
      */
     protected $fillable = [
-        'address',        
-    ];    
+        'address',
+    ];
 
     public function user()
     {

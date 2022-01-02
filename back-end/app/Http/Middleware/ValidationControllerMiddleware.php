@@ -10,10 +10,10 @@ class ValidationControllerMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        list($controllerName ,$methodName)=explode('@',$request->route()[1]['uses']);
+        list($controllerName, $methodName) = explode('@', $request->route()[1]['uses']);
         $validationRules = $controllerName::getValidationRules();
 
-        if(array_key_exists($methodName, $validationRules)){
+        if (array_key_exists($methodName, $validationRules)) {
             $methodRules = $validationRules[$methodName];
             Validator::make($request->all(), $methodRules)->validate();
         }

@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Book extends Model 
+class Book extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'books';
 
@@ -22,8 +23,8 @@ class Book extends Model
         'isbn',
         'authors',
         'price',
-        'description',    
-        'gender'
+        'description',
+        'gender',
     ];
 
     public function user()
