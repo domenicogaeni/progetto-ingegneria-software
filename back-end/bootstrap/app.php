@@ -72,13 +72,16 @@ $app->configure('app');
 |
 */
 
-// $app->middleware([
-//     App\Http\Middleware\ExampleMiddleware::class
-// ]);
+$app->middleware([
+    App\Http\Middleware\RequestSanitazerMiddleware::class,
+    App\Http\Middleware\ResponseMiddleware::class,
+    App\Http\Middleware\CORSMiddleware::class,
+]);
 
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
+$app->routeMiddleware([
+    // 'auth' => App\Http\Middleware\Authenticate::class,
+    'validation' => App\Http\Middleware\ValidationControllerMiddleware::class,
+]);
 
 /*
 |--------------------------------------------------------------------------
