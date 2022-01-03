@@ -25,6 +25,7 @@ class Book extends Model
         'price',
         'description',
         'gender',
+        'user_id',
     ];
 
     public function user()
