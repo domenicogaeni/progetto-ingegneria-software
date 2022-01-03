@@ -34,6 +34,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     protected $hidden = [
         'password',
+        'created_at',
+        'updated_at',
     ];
 
     /**
