@@ -19,6 +19,9 @@ class BookController extends BaseController
                 'description' => 'filled|string|max:255',
                 'gender' => 'required|string|max:255',
             ],
+            'search' => [
+                'value' => 'required|string',
+            ],
         ];
     }
 
@@ -40,11 +43,11 @@ class BookController extends BaseController
             'user_id' => Auth::user()->id,
         ]);
     }
-    
+
     /**
      * Delete a book.
      *
-     * @param  int $id
+     * @param int $id
      */
     public function delete($id)
     {
@@ -54,5 +57,23 @@ class BookController extends BaseController
             abort(404, 'Book not found');
         }
         $book->delete();
+    }
+
+    /**
+     * Search a book.
+     *
+     * @param Request $request
+     *
+     * @return Book[]
+     */
+    public function search(Request $request)
+    {
+        $params = $request->only(['value']);
+
+        return Book::where('title', 'like', '%' . $params['value'] . '%')
+            ->orWhere('isbn', 'like', '%' . $params['value'] . '%')
+            ->orWhere('authors', 'like', '%' . $params['value'] . '%')
+            ->orWhere('gender', 'like', '%' . $params['value'] . '%')
+            ->get();
     }
 }

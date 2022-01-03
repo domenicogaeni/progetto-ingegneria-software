@@ -28,6 +28,61 @@ class Book extends Model
         'user_id',
     ];
 
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+        'user_id',
+    ];
+
+    /**
+     * The attributes that should be append to array.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'reseller_info',
+        'average_vote',
+    ];
+
+    /**
+     * Relationship to show in toArray.
+     *
+     * @var array
+     */
+    protected $with = [
+        'book_reviews',
+    ];
+
+    /**
+     * Get basic reseller info.
+     */
+    public function getResellerInfoAttribute()
+    {
+        $user = $this->user()->first();
+
+        return [
+            'name' => $user->name,
+            'last_name' => $user->last_name,
+            'email' => $user->email,
+        ];
+    }
+
+    /**
+     * Get average vote of reviews.
+     */
+    public function getAverageVoteAttribute()
+    {
+        $reviews = $this->book_reviews()->get();
+
+        return $reviews->avg('vote');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

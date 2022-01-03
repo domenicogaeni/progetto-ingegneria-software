@@ -23,6 +23,7 @@ $router->group(['prefix' => 'auth'], function () use ($router) {
 
 $router->group(['middleware' => 'auth'], function () use ($router) {
     $router->group(['prefix' => 'book'], function () use ($router) {
+        $router->get('', BookController::class . '@search');
         $router->post('', BookController::class . '@new');
         $router->delete('{id}', BookController::class . '@delete');
     });
