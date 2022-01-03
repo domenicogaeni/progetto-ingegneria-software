@@ -2,6 +2,8 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -13,6 +15,14 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->group(['prefix' => 'auth'], function () use ($router) {
+    $router->post('register', UserController::class . '@register');
+    $router->post('login', UserController::class . '@login');
+});
+
+$router->group(['middleware' => 'auth'], function () use ($router) {
+    $router->group(['prefix' => 'auth'], function () use ($router) {
+        $router->post('logout', UserController::class . '@logout');
+        $router->get('me', UserController::class . '@me');
+    });
 });

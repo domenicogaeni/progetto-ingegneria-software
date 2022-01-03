@@ -1,0 +1,175 @@
+<?php
+
+use App\Models\Address;
+use App\Models\User;
+use App\Models\UserAuthToken;
+use Illuminate\Support\Facades\Hash;
+
+/**
+ * @internal
+ */
+class UserTest extends TestCase
+{
+    /**
+     * Test register new user.
+     */
+    public function testNewUser()
+    {
+        $user = User::factory()->raw();
+        $name = $user['name'];
+        $lastName = $user['last_name'];
+        $email = $user['email'];
+        $password = $user['password'];
+        $phone = $user['phone'];
+        $address = Address::factory()->raw()['address'];
+
+        $this->notSeeInDatabase('users', [
+            'name' => $name,
+            'last_name' => $lastName,
+            'email' => $email,
+            'phone' => $phone,
+        ]);
+
+        $this->post('auth/register', [
+            'name' => $name,
+            'last_name' => $lastName,
+            'email' => $email,
+            'password' => $password,
+            'phone' => $phone,
+            'address' => $address,
+        ])
+            ->seeStatusCode(200);
+
+        $this->seeJsonStructure([
+            'data' => [
+                'id',
+                'name',
+                'last_name',
+                'email',
+                'phone',
+                'address',
+                'auth_token' => [
+                    'auth_token',
+                    'expired_at',
+                ],
+            ],
+        ]);
+
+        $this->seeInDatabase('users', [
+            'name' => $name,
+            'last_name' => $lastName,
+            'email' => $email,
+            'phone' => $phone,
+        ]);
+    }
+
+    /**
+     * Test register new user with existing email.
+     */
+    public function testDuplicatedUser()
+    {
+        $email = 'test@example.com';
+
+        User::factory()->create([
+            'email' => $email,
+        ]);
+
+        $user = User::factory()->raw();
+        $name = $user['name'];
+        $lastName = $user['last_name'];
+        $password = $user['password'];
+        $phone = $user['phone'];
+
+        $this->post('auth/register', [
+            'name' => $name,
+            'last_name' => $lastName,
+            'email' => $email,
+            'password' => $password,
+            'phone' => $phone,
+        ])
+            ->seeStatusCode(422);
+    }
+
+    /**
+     * Test login, with correct credentials, incorrect password and incorrect email.
+     */
+    public function testLogin()
+    {
+        $password = 'passwordBellaLunga';
+        $user = User::factory()->create([
+            'password' => Hash::make($password),
+        ]);
+
+        $this->post('auth/login', ['email' => $user->email, 'password' => $password])
+            ->seeStatusCode(200)
+            ->seeJsonStructure([
+                'data' => [
+                    'id',
+                    'name',
+                    'last_name',
+                    'email',
+                    'phone',
+                    'address',
+                    'auth_token' => [
+                        'auth_token',
+                        'expired_at',
+                    ],
+                ],
+            ]);
+
+        $this->post('auth/login', ['email' => $user->email, 'password' => 'wrongPasswordMaSempreLunga'])
+            ->seeStatusCode(401);
+
+        $this->post('auth/login', ['email' => 'wrong@email.com', 'password' => $password])
+            ->seeStatusCode(401);
+    }
+
+    /**
+     * Test call /auth/me.
+     */
+    public function testMe()
+    {
+        /** @var User $user */
+        $user = User::factory()->create();
+        $address = Address::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $this->actingAs($user);
+
+        $this->get('auth/me')
+            ->seeStatusCode(200)
+            ->seeJson([
+                'data' => [
+                    'id' => $user->id,
+                    'email' => $user->email,
+                    'last_name' => $user->last_name,
+                    'name' => $user->name,
+                    'phone' => $user->phone,
+                    'auth_token' => null,
+                    'address' => $address->address,
+                ],
+            ]);
+    }
+
+    /**
+     * Test logout call.
+     */
+    public function testLogout()
+    {
+        $this->refreshApplication();
+
+        $user = User::factory()->create();
+        $token = UserAuthToken::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $this->post('auth/logout', [], ['Authorization' => 'Bearer ' . $token->auth_token])
+            ->seeStatusCode(200)
+            ->seeJson(['data' => 'Logout success']);
+
+        $this->refreshApplication();
+
+        $this->post('auth/logout', [], ['Authorization' => 'Bearer ' . $token->auth_token])
+            ->seeStatusCode(401);
+    }
+}

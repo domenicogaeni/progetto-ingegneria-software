@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Models\UserAuthToken;
 use Illuminate\Support\ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -25,8 +26,16 @@ class AuthServiceProvider extends ServiceProvider
         // the User instance via an API token or any other method necessary.
 
         $this->app['auth']->viaRequest('api', function ($request) {
-            if ($request->input('api_token')) {
-                return User::where('api_token', $request->input('api_token'))->first();
+            if ($request->bearerToken()) {
+                $idTokenString = $request->bearerToken();
+                $token = UserAuthToken::where('auth_token', $idTokenString)
+                    ->where('expired_at', '>', date('Y-m-d H:i:s'))
+                    ->first();
+                if (!$token) {
+                    return null;
+                }
+
+                return User::find($token->user_id);
             }
         });
     }
