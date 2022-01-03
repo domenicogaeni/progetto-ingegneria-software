@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Models\UserAuthToken;
 use Illuminate\Support\Facades\Hash;
 
 /**
@@ -115,6 +116,51 @@ class UserTest extends TestCase
             ->seeStatusCode(401);
 
         $this->post('auth/login', ['email' => 'wrong@email.com', 'password' => $password])
+            ->seeStatusCode(401);
+    }
+
+    /**
+     * Test call /auth/me.
+     */
+    public function testMe()
+    {
+        /** @var User $user */
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $this->get('auth/me')
+            ->seeStatusCode(200)
+            ->seeJson([
+                'data' => [
+                    'id' => $user->id,
+                    'email' => $user->email,
+                    'last_name' => $user->last_name,
+                    'name' => $user->name,
+                    'phone' => $user->phone,
+                    'auth_token' => null,
+                ],
+            ]);
+    }
+
+    /**
+     * Test logout call.
+     */
+    public function testLogout()
+    {
+        $this->refreshApplication();
+
+        $user = User::factory()->create();
+        $token = UserAuthToken::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $this->post('auth/logout', [], ['Authorization' => 'Bearer ' . $token->auth_token])
+            ->seeStatusCode(200)
+            ->seeJson(['data' => 'Logout success']);
+
+        $this->refreshApplication();
+
+        $this->post('auth/logout', [], ['Authorization' => 'Bearer ' . $token->auth_token])
             ->seeStatusCode(401);
     }
 }

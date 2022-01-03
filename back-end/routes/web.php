@@ -20,6 +20,9 @@ $router->group(['prefix' => 'auth'], function () use ($router) {
     $router->post('login', UserController::class . '@login');
 });
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->group(['middleware' => 'auth'], function () use ($router) {
+    $router->group(['prefix' => 'auth'], function () use ($router) {
+        $router->post('logout', UserController::class . '@logout');
+        $router->get('me', UserController::class . '@me');
+    });
 });
