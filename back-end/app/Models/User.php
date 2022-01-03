@@ -45,11 +45,18 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     protected $appends = [
         'auth_token',
+        'address',
     ];
 
     public function getAuthTokenAttribute()
     {
         return $this->auth_tokens()->where('expired_at', '>', date('Y-m-d H:i:s'))->first();
+    }
+
+    public function getAddressAttribute()
+    {
+        $address = $this->addresses()->first();
+        return isset($address) ? $address->address : null;
     }
 
     public function addresses()

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\User;
 use App\Models\UserAuthToken;
 use Illuminate\Http\Request;
@@ -21,6 +22,7 @@ class UserController extends BaseController
                 'email' => 'required|string|email|max:255|unique:users',
                 'password' => 'required|string|min:12',
                 'phone' => 'required|string|max:255',
+                'address' => 'required|string|max:255',
             ],
             'login' => [
                 'email' => 'required|string|email|max:255',
@@ -38,13 +40,18 @@ class UserController extends BaseController
      */
     public function register(Request $request)
     {
-        $params = $request->only(['name', 'last_name', 'email', 'password', 'phone']);
+        $params = $request->only(['name', 'last_name', 'email', 'password', 'phone', 'address']);
 
         return DB::transaction(function () use ($params) {
             $user = new User();
             $user->fill($params);
             $user->password = Hash::make($params['password']);
             $user->save();
+
+            Address::create([
+                'address' => $params['address'],
+                'user_id' => $user->id,
+            ]);
 
             UserAuthToken::create([
                 'auth_token' => md5(Str::random(255)),

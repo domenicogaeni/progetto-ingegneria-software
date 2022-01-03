@@ -20,6 +20,7 @@ class Address extends Model
      */
     protected $fillable = [
         'address',
+        'user_id'
     ];
 
     public function user()

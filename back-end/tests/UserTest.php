@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Address;
 use App\Models\User;
 use App\Models\UserAuthToken;
 use Illuminate\Support\Facades\Hash;
@@ -20,6 +21,7 @@ class UserTest extends TestCase
         $email = $user['email'];
         $password = $user['password'];
         $phone = $user['phone'];
+        $address = Address::factory()->raw()['address'];
 
         $this->notSeeInDatabase('users', [
             'name' => $name,
@@ -34,6 +36,7 @@ class UserTest extends TestCase
             'email' => $email,
             'password' => $password,
             'phone' => $phone,
+            'address' => $address,
         ])
             ->seeStatusCode(200);
 
@@ -44,6 +47,7 @@ class UserTest extends TestCase
                 'last_name',
                 'email',
                 'phone',
+                'address',
                 'auth_token' => [
                     'auth_token',
                     'expired_at',
@@ -105,6 +109,7 @@ class UserTest extends TestCase
                     'last_name',
                     'email',
                     'phone',
+                    'address',
                     'auth_token' => [
                         'auth_token',
                         'expired_at',
@@ -126,6 +131,9 @@ class UserTest extends TestCase
     {
         /** @var User $user */
         $user = User::factory()->create();
+        $address = Address::factory()->create([
+            'user_id' => $user->id,
+        ]);
         $this->actingAs($user);
 
         $this->get('auth/me')
@@ -138,6 +146,7 @@ class UserTest extends TestCase
                     'name' => $user->name,
                     'phone' => $user->phone,
                     'auth_token' => null,
+                    'address' => $address->address,
                 ],
             ]);
     }
