@@ -22,7 +22,7 @@ class UserAuthTokenFactory extends Factory
     public function definition()
     {
         return [
-            'token' => $this->faker->uuid,
+            'auth_token' => $this->faker->uuid,
             'expired_at' => $this->faker->dateTimeBetween('now', '+1 days'),
         ];
     }
