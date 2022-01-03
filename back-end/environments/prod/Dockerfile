@@ -15,8 +15,13 @@ ENV DB_PASSWORD=$DB_PASSWORD
 
 # Copy source and install dependencies
 COPY ./back-end $APP_HOME
-COPY /back-end/environments/prod/.env.example .env
+COPY ./back-end/environments/prod/.env.example .env
 RUN composer install
+
+RUN apt-get install -y libpq-dev
+
+# Add postgresql database support
+RUN docker-php-ext-install pdo pdo_pgsql
 
 # Run migrations
 RUN php artisan migrate --force
