@@ -2,7 +2,7 @@
 
 Per modellare i casi d’uso, ovvero le funzionalità degli attori nel sistema, abbiamo modellato uno use-case diagram.
 
-![Untitled](assets/Use-case%20diagram%20@Fabio%20Palazzi%207636d46f891d46bd9107fa992e7f222a/Untitled.png)
+![Untitled](assets/Untitled.png)
 
 L’attore principale è il cliente che è esteso sia dall'attore compratore che venditore, infatti un cliente (che venditore o compratore sia), una volta registrato può sia vendere che comprare libri. Non abbiamo quindi funzionalità specifiche ma solo comuni ad entrambi i ruoli.
 
