@@ -24,7 +24,7 @@ class UserController extends BaseController
             'login' => [
                 'email' => 'required|string|email|max:255',
                 'password' => 'required|string|min:12',
-            ],            
+            ],
         ];
     }
 
@@ -54,11 +54,12 @@ class UserController extends BaseController
             return User::find($user->id);
         });
     }
-    
+
     /**
      * Login.
      *
-     * @param  Request $request
+     * @param Request $request
+     *
      * @return User
      */
     public function login(Request $request)

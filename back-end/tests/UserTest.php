@@ -1,19 +1,24 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * @internal
  */
 class UserTest extends TestCase
 {
+    /**
+     * Test register new user.
+     */
     public function testNewUser()
     {
-        $name = 'John';
-        $lastName = 'Doe';
-        $phone = '+380991234567';
-        $email = 'test@example.com';
-        $pwd = 'passwordlunga';
+        $user = User::factory()->raw();
+        $name = $user['name'];
+        $lastName = $user['last_name'];
+        $email = $user['email'];
+        $password = $user['password'];
+        $phone = $user['phone'];
 
         $this->notSeeInDatabase('users', [
             'name' => $name,
@@ -26,13 +31,13 @@ class UserTest extends TestCase
             'name' => $name,
             'last_name' => $lastName,
             'email' => $email,
-            'password' => $pwd,
+            'password' => $password,
             'phone' => $phone,
         ])
             ->seeStatusCode(200);
 
-        $this->seeJsonStructure(
-            ['data' => [
+        $this->seeJsonStructure([
+            'data' => [
                 'id',
                 'name',
                 'last_name',
@@ -43,8 +48,7 @@ class UserTest extends TestCase
                     'expired_at',
                 ],
             ],
-            ]
-        );
+        ]);
 
         $this->seeInDatabase('users', [
             'name' => $name,
@@ -54,21 +58,63 @@ class UserTest extends TestCase
         ]);
     }
 
+    /**
+     * Test register new user with existing email.
+     */
     public function testDuplicatedUser()
     {
-        $name = 'John';
-        $lastName = 'Doe';
-        $phone = '+380991234567';
         $email = 'test@example.com';
-        $pwd = 'passwordlunga';
+
+        User::factory()->create([
+            'email' => $email,
+        ]);
+
+        $user = User::factory()->raw();
+        $name = $user['name'];
+        $lastName = $user['last_name'];
+        $password = $user['password'];
+        $phone = $user['phone'];
 
         $this->post('auth/register', [
             'name' => $name,
             'last_name' => $lastName,
             'email' => $email,
-            'password' => $pwd,
+            'password' => $password,
             'phone' => $phone,
         ])
             ->seeStatusCode(422);
+    }
+
+    /**
+     * Test login, with correct credentials, incorrect password and incorrect email.
+     */
+    public function testLogin()
+    {
+        $password = 'passwordBellaLunga';
+        $user = User::factory()->create([
+            'password' => Hash::make($password),
+        ]);
+
+        $this->post('auth/login', ['email' => $user->email, 'password' => $password])
+            ->seeStatusCode(200)
+            ->seeJsonStructure([
+                'data' => [
+                    'id',
+                    'name',
+                    'last_name',
+                    'email',
+                    'phone',
+                    'auth_token' => [
+                        'auth_token',
+                        'expired_at',
+                    ],
+                ],
+            ]);
+
+        $this->post('auth/login', ['email' => $user->email, 'password' => 'wrongPasswordMaSempreLunga'])
+            ->seeStatusCode(401);
+
+        $this->post('auth/login', ['email' => 'wrong@email.com', 'password' => $password])
+            ->seeStatusCode(401);
     }
 }
