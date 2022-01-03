@@ -36,6 +36,20 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'password',
     ];
 
+    /**
+     * Get other user attributes.
+     *
+     * @return array
+     */
+    protected $appends = [
+        'auth_token',
+    ];
+
+    public function getAuthTokenAttribute()
+    {
+        return $this->auth_tokens()->where('expired_at', '>', date('Y-m-d H:i:s'))->first();
+    }
+
     public function addresses()
     {
         return $this->hasMany(Address::class, 'user_id');
@@ -84,5 +98,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function book_reviews_reviewer()
     {
         return $this->hasMany(BookReview::class, 'user_id');
+    }
+
+    public function auth_tokens()
+    {
+        return $this->hasMany(UserAuthToken::class, 'user_id');
     }
 }
