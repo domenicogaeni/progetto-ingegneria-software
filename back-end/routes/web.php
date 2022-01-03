@@ -17,6 +17,7 @@ use App\Http\Controllers\UserController;
 
 $router->group(['prefix' => 'auth'], function () use ($router) {
     $router->post('register', UserController::class . '@register');
+    $router->post('login', UserController::class . '@login');
 });
 
 $router->get('/', function () use ($router) {
