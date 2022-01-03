@@ -33,7 +33,7 @@ class BookController extends BaseController
     public function new(Request $request)
     {
         $params = $request->only(['title', 'isbn', 'authors', 'price', 'description', 'gender']);
-        Book::create([
+        $book = Book::create([
             'title' => $params['title'],
             'isbn' => $params['isbn'],
             'authors' => $params['authors'],
@@ -42,6 +42,8 @@ class BookController extends BaseController
             'gender' => $params['gender'],
             'user_id' => Auth::user()->id,
         ]);
+
+        return Book::find($book->id);
     }
 
     /**

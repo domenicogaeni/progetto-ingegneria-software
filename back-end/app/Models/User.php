@@ -56,6 +56,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function getAddressAttribute()
     {
         $address = $this->addresses()->first();
+
         return isset($address) ? $address->address : null;
     }
 

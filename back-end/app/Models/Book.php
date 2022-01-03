@@ -59,6 +59,10 @@ class Book extends Model
         'book_reviews',
     ];
 
+    protected $casts = [
+        'price' => 'float',
+    ];
+
     /**
      * Get basic reseller info.
      */
