@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Address;
+use App\Models\CreditMethod;
+use App\Models\PaymentMethod;
 use App\Models\User;
 use App\Models\UserAuthToken;
 use Illuminate\Support\Facades\Hash;
@@ -22,6 +24,8 @@ class UserTest extends TestCase
         $password = $user['password'];
         $phone = $user['phone'];
         $address = Address::factory()->raw()['address'];
+        $cardNumber = PaymentMethod::factory()->raw()['card_number'];
+        $iban = CreditMethod::factory()->raw()['iban'];
 
         $this->notSeeInDatabase('users', [
             'name' => $name,
@@ -37,21 +41,26 @@ class UserTest extends TestCase
             'password' => $password,
             'phone' => $phone,
             'address' => $address,
-        ])
-            ->seeStatusCode(200);
+            'card_number' => $cardNumber,
+            'iban' => $iban,
+        ]);
+        $this->seeStatusCode(200);
+        $response = json_decode($this->response->original)->data;
 
-        $this->seeJsonStructure([
+        $this->seeJson([
             'data' => [
-                'id',
-                'name',
-                'last_name',
-                'email',
-                'phone',
-                'address',
+                'id' => $response->id,
+                'name' => $name,
+                'last_name' => $lastName,
+                'email' => $email,
+                'phone' => $phone,
+                'address' => $address,
                 'auth_token' => [
-                    'auth_token',
-                    'expired_at',
-                ],
+                    'auth_token' => $response->auth_token->auth_token,
+                    'expired_at' => $response->auth_token->expired_at,
+                ],                
+                'card_number' => $cardNumber,
+                'iban' => $iban,
             ],
         ]);
 
@@ -68,11 +77,7 @@ class UserTest extends TestCase
      */
     public function testDuplicatedUser()
     {
-        $email = 'test@example.com';
-
-        User::factory()->create([
-            'email' => $email,
-        ]);
+        $userOne = User::factory()->create();
 
         $user = User::factory()->raw();
         $name = $user['name'];
@@ -83,11 +88,11 @@ class UserTest extends TestCase
         $this->post('auth/register', [
             'name' => $name,
             'last_name' => $lastName,
-            'email' => $email,
+            'email' => $userOne->email,
             'password' => $password,
             'phone' => $phone,
-        ])
-            ->seeStatusCode(422);
+        ]);
+        $this->seeStatusCode(422);
     }
 
     /**
@@ -114,6 +119,8 @@ class UserTest extends TestCase
                         'auth_token',
                         'expired_at',
                     ],
+                    'card_number',
+                    'iban',
                 ],
             ]);
 
@@ -147,6 +154,8 @@ class UserTest extends TestCase
                     'phone' => $user->phone,
                     'auth_token' => null,
                     'address' => $address->address,
+                    'card_number' => null,
+                    'iban' => null,
                 ],
             ]);
     }

@@ -46,6 +46,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $appends = [
         'auth_token',
         'address',
+        'card_number',
+        'iban',
     ];
 
     public function getAuthTokenAttribute()
@@ -58,6 +60,20 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         $address = $this->addresses()->first();
 
         return isset($address) ? $address->address : null;
+    }
+
+    public function getCardNumberAttribute()
+    {
+        $paymentMethod = $this->payment_methods()->first();
+
+        return isset($paymentMethod) ? $paymentMethod->card_number : null;
+    }
+
+    public function getIbanAttribute()
+    {
+        $creditMethod = $this->credit_methods()->first();
+
+        return isset($creditMethod) ? $creditMethod->iban : null;
     }
 
     public function addresses()
