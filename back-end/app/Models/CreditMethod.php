@@ -18,6 +18,7 @@ class CreditMethod extends Model
      */
     protected $fillable = [
         'iban',
+        'user_id',
     ];
 
     public function user()
