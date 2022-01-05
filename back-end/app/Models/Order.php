@@ -51,9 +51,10 @@ class Order extends Model
         ];
     }
 
-    public function getBuyerInfoAttribute ()
+    public function getBuyerInfoAttribute()
     {
         $user = $this->user()->first();
+
         return [
             'name' => $user->name,
             'last_name' => $user->last_name,

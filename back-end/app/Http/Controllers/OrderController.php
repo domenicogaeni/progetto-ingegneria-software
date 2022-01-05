@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
+use App\Models\Book;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,13 @@ class OrderController extends BaseController
         ];
     }
 
+    /**
+     * Create new order.
+     *
+     * @param Request $request
+     *
+     * @return Order
+     */
     public function new(Request $request)
     {
         $params = $request->only(['book_id', 'address']);
@@ -44,5 +52,28 @@ class OrderController extends BaseController
         $order->refresh();
 
         return $order;
+    }
+
+    public function getMyOrders()
+    {
+        $user = Auth::user();
+
+        $boughtBooks = Order::where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $myBooksId = Book::where('user_id', $user->id)
+            ->withTrashed()
+            ->pluck('id')
+            ->toArray();
+        $soldBooks = Order::whereIn('book_id', $myBooksId)
+            ->where('user_id', '!=', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return [
+            'bought_books' => $boughtBooks,
+            'sold_books' => $soldBooks,
+        ];
     }
 }

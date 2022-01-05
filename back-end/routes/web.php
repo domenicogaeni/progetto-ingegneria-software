@@ -31,6 +31,7 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
     });
 
     $router->group(['prefix' => 'order'], function () use ($router) {
+        $router->get('', OrderController::class . '@getMyOrders');
         $router->post('', OrderController::class . '@new');
     });
 
