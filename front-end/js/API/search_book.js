@@ -3,7 +3,10 @@ $(document).ready(function (){
         alert($("#inputSearch").val());
         $.ajax({
             type: 'GET',
-            url: 'https://ingegneria-software.herokuapp.com/public/book/' + $("#inputSearch").val(),
+            url: 'https://ingegneria-software.herokuapp.com/public/book?value=' + $("#inputSearch").val(),
+            crossDomain: true,
+            contentType:"application/json; charset=utf-8",
+            dataType:"json",
             beforeSend: function(xhr) {
               if (localStorage.token) {
                 alert(localStorage.token);
