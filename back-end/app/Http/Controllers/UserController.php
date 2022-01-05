@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
+use App\Models\CreditMethod;
+use App\Models\PaymentMethod;
 use App\Models\User;
 use App\Models\UserAuthToken;
 use Illuminate\Http\Request;
@@ -23,6 +25,8 @@ class UserController extends BaseController
                 'password' => 'required|string|min:12',
                 'phone' => 'required|string|max:255',
                 'address' => 'required|string|max:255',
+                'card_number' => 'filled|string|max:255',
+                'iban' => 'filled|string|max:255',
             ],
             'login' => [
                 'email' => 'required|string|email|max:255',
@@ -40,7 +44,7 @@ class UserController extends BaseController
      */
     public function register(Request $request)
     {
-        $params = $request->only(['name', 'last_name', 'email', 'password', 'phone', 'address']);
+        $params = $request->only(['name', 'last_name', 'email', 'password', 'phone', 'address', 'card_number', 'iban']);
 
         return DB::transaction(function () use ($params) {
             $user = new User();
@@ -52,6 +56,20 @@ class UserController extends BaseController
                 'address' => $params['address'],
                 'user_id' => $user->id,
             ]);
+
+            if (isset($params['card_number'])) {
+                PaymentMethod::create([
+                    'card_number' => $params['card_number'],
+                    'user_id' => $user->id,
+                ]);                
+            }
+
+            if (isset($params['iban'])) {
+                CreditMethod::create([
+                    'iban' => $params['iban'],
+                    'user_id' => $user->id,
+                ]);
+            }
 
             UserAuthToken::create([
                 'auth_token' => md5(Str::random(255)),
