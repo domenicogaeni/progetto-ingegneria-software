@@ -24,7 +24,7 @@ $(document).ready(function (){
                                         <div class="card-body">\
                                             <h5 class="card-title">' + element.title + '</h5>\
                                             <h7 class="card-subtitle mb-2 text-muted">' + element.authors + ' - ' + element.gender + '</h7>\
-                                            <h6 class="card-subtitle mb-2 text-muted">Price' + element.price + '€</h6>\
+                                            <h6 class="card-subtitle mb-2 text-muted">Price: ' + element.price + '€</h6>\
                                             <h8 class="card-subtitle mb-2 text-muted"></h8>\
                                             <p class="card-text">';
                                             if(element.description != null) 
