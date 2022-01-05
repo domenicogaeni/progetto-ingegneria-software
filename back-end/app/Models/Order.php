@@ -27,6 +27,7 @@ class Order extends Model
     protected $appends = [
         'book_info',
         'address',
+        'buyer_info',
     ];
 
     public function getAddressAttribute()
@@ -47,6 +48,16 @@ class Order extends Model
             'description' => $book->description,
             'gender' => $book->gender,
             'reseller_info' => $book->reseller_info,
+        ];
+    }
+
+    public function getBuyerInfoAttribute ()
+    {
+        $user = $this->user()->first();
+        return [
+            'name' => $user->name,
+            'last_name' => $user->last_name,
+            'email' => $user->email,
         ];
     }
 

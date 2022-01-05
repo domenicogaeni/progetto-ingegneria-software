@@ -61,6 +61,11 @@ class OrderTest extends TestCase
                     ],
                 ],
                 'address' => $address->address,
+                'buyer_info' => [
+                    'name' => $user->name,
+                    'last_name' => $user->last_name,
+                    'email' => $user->email,
+                ],
             ],
         ]);
 
