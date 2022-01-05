@@ -31,7 +31,7 @@ $(document).ready(function(){
                       }
                     },
                     success: function(data){
-                        console.log("ok");
+                        location.reload();
                     },
                     error: function(data) {   
                         alert("Error, retry!")
