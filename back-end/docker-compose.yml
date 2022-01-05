@@ -1,6 +1,7 @@
 version: "3.5"
 services:
   lumen:
+    platform: linux/x86_64
     image: domenicogaeni/php:8.0-dev
     container_name: lumen-ing-soft
     user: "www-data:www-data"
@@ -30,6 +31,7 @@ services:
       - XDEBUG_MODE=debug
 
   database:
+    platform: linux/x86_64
     image: mysql:8
     # Set DB_HOST variable in .env file to this value to use local environment
     container_name: database-ing-soft
