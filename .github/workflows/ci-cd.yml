@@ -3,7 +3,7 @@ name: CI/CD
 on:
   push:
     branches:
-      - deploy-backend-with-tests
+      - master
 jobs:
   test:
     runs-on: ubuntu-latest
