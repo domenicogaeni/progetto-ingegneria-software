@@ -1,12 +1,13 @@
 name: CI/CD
 
-on: push
+on:
+  push:
+    branches:
+      - deploy-frontend
 
 jobs:
-  deploy:
+  deploy-backend:
     runs-on: ubuntu-latest
-
-    if: github.ref == 'refs/heads/master'
 
     steps:
       - name: Checkout code
@@ -32,3 +33,18 @@ jobs:
           DB_DATABASE: ${{secrets.DB_DATABASE}}
           DB_USERNAME: ${{secrets.DB_USERNAME}}
           DB_PASSWORD: ${{secrets.DB_PASSWORD}}
+
+  deploy-frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME_FRONTEND}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          appdir: front-end
