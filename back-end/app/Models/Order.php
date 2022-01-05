@@ -17,6 +17,44 @@ class Order extends Model
     public const STATUS_DELIVERED = 'delivered';
     public const STATUS_DONE = 'done';
 
+    protected $hidden = [
+        'user_id',
+        'updated_at',
+        'book_id',
+        'address_id',
+    ];
+
+    protected $appends = [
+        'book_info',
+        'address',
+    ];
+
+    public function getAddressAttribute()
+    {
+        return $this->address()->first()->address;
+    }
+
+    public function getBookInfoAttribute()
+    {
+        $book = $this->book()->first();
+
+        return [
+            'id' => $book->id,
+            'title' => $book->title,
+            'isbn' => $book->isbn,
+            'authors' => $book->authors,
+            'price' => $book->price,
+            'description' => $book->description,
+            'gender' => $book->gender,
+            'reseller_info' => $book->reseller_info,
+        ];
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return date('Y-m-d H:i:s', strtotime($value));
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

@@ -61,7 +61,7 @@ class UserController extends BaseController
                 PaymentMethod::create([
                     'card_number' => $params['card_number'],
                     'user_id' => $user->id,
-                ]);                
+                ]);
             }
 
             if (isset($params['iban'])) {
