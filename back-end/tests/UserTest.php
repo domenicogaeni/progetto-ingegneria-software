@@ -40,6 +40,7 @@ class UserTest extends TestCase
             'email' => $email,
             'password' => $password,
             'phone' => $phone,
+            'address' => $address,
             'card_number' => $cardNumber,
             'iban' => $iban,
         ]);
