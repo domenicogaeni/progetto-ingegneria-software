@@ -58,9 +58,9 @@ class OrderTest extends TestCase
                         'name' => $reseller->name,
                         'last_name' => $reseller->last_name,
                         'email' => $reseller->email,
-                    ],                    
-                ],  
-                'address' => $address->address,           
+                    ],
+                ],
+                'address' => $address->address,
             ],
         ]);
 
