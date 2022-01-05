@@ -75,4 +75,103 @@ class OrderTest extends TestCase
             'address_id' => $address->id,
         ]);
     }
+
+    public function testGetMyOrders()
+    {
+        $this->refreshApplication();
+
+        /** @var User $reseller */
+        $reseller = User::factory()->create();
+        $bookReseller = Book::factory()->create([
+            'user_id' => $reseller->id,
+        ]);
+        $addressReseller = Address::factory()->create([
+            'user_id' => $reseller->id,
+        ]);
+
+        /** @var User $user */
+        $user = User::factory()->create();
+        $bookUser = Book::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $addressUser = Address::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        
+        Order::factory()->create([
+            'user_id' => $user->id,
+            'book_id' => $bookReseller->id,
+            'address_id' => $addressUser->id,
+        ]);
+
+        Order::factory()->create([
+            'user_id' => $reseller->id,
+            'book_id' => $bookUser->id,
+            'address_id' => $addressReseller->id,
+        ]);
+
+        $this->actingAs($reseller);
+        $this->get('order');
+        $this->seeStatusCode(200);
+
+        $response = json_decode($this->response->original)->data;
+        $this->seeJson([
+            'data' => [
+                'bought_books' => [
+                    [
+                        'id' => $response->bought_books[0]->id,
+                        'status' => $response->bought_books[0]->status,
+                        'created_at' => $response->bought_books[0]->created_at,
+                        'book_info' => [
+                            'id' => $bookUser->id,
+                            'title' => $bookUser->title,
+                            'isbn' => $bookUser->isbn,
+                            'authors' => $bookUser->authors,
+                            'price' => $bookUser->price,
+                            'description' => $bookUser->description,
+                            'gender' => $bookUser->gender,
+                            'reseller_info' => [
+                                'name' => $user->name,
+                                'last_name' => $user->last_name,
+                                'email' => $user->email,
+                            ],
+                        ],
+                        'address' => $addressReseller->address,
+                        'buyer_info' => [
+                            'name' => $reseller->name,
+                            'last_name' => $reseller->last_name,
+                            'email' => $reseller->email,
+                        ],
+                    ]
+                ],
+                'sold_books' => [
+                    [
+                        'id' => $response->sold_books[0]->id,
+                        'status' => $response->sold_books[0]->status,
+                        'created_at' => $response->sold_books[0]->created_at,
+                        'book_info' => [
+                            'id' => $bookReseller->id,
+                            'title' => $bookReseller->title,
+                            'isbn' => $bookReseller->isbn,
+                            'authors' => $bookReseller->authors,
+                            'price' => $bookReseller->price,
+                            'description' => $bookReseller->description,
+                            'gender' => $bookReseller->gender,
+                            'reseller_info' => [
+                                'name' => $reseller->name,
+                                'last_name' => $reseller->last_name,
+                                'email' => $reseller->email,
+                            ],
+                        ],
+                        'address' => $addressUser->address,
+                        'buyer_info' => [
+                            'name' => $user->name,
+                            'last_name' => $user->last_name,
+                            'email' => $user->email,
+                        ],
+                    ]
+                ],                
+            ],
+        ]);
+    }
 }
