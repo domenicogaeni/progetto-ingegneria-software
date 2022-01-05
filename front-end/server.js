@@ -1,9 +1,7 @@
 const express = require("express");
 const app = express();
-const port = 80;
 
 app.use(express.static("public"));
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
+// start the server listening for requests
+app.listen(process.env.PORT || 3000, () => console.log("Server is running..."));
