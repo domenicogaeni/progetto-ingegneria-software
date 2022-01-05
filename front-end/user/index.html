@@ -21,7 +21,8 @@
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="../js/API/logout.js"></script>
         <script src="../js/API/search_book.js"></script>
-        <script src="../js/showModal.js"></script>
+        <script src="../js/API/buy_book.js"></script>
+        <script src="../js/API/is_logged.js"></script>
 
     </head>
     <body>
@@ -77,7 +78,7 @@
                             <label for="input_indConsegna">Indirizzo Consegna</label>
                             <input type="text" class="form-control" id="input_indConsegna" placeholder="Specificare l'Indirizzo">
                           </div>
-                          <h7>Totale:</h7>
+                          <h7>Totale:<span id="price_value"></span>€</h7>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default closeModal" data-dismiss="modal">Close</button>
@@ -88,153 +89,14 @@
                 </div>
                 <!--end modal-->
                  <!-- Search InputBox-->
-                <form style="margin-left: auto; margin-right: auto; margin-top: 10px;margin-bottom: 20px;">
+                <form style="margin-left: auto; margin-right: auto; margin-top: 10px;margin-bottom: 5px;">
                     <div class="input-group">
                         <input id="inputSearch" class="form-control" type="text" placeholder="Search by title, ISBN, author..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
                         <button class="btn btn-primary" id="btnSearch" type="button"><i class="fas fa-search"></i></button>
                     </div>
                 </form>
-                <div class="row">
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <h7 class="card-subtitle mb-2 text-muted">Author - Genere</h7>
-                                <h6 class="card-subtitle mb-2 text-muted">Price</h6>
-                                <h8 class="card-subtitle mb-2 text-muted"></h8>
-                                <p class="card-text">Des quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a class="btn btn-primary buttonBuy">Buy</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Author</h6>
-                                <h7 class="card-subtitle mb-2 text-muted">Author</h7>
-                                <p class="card-text">Des quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-                    </div>
+                <div id="books_searched" style="margin-top: 10px;">
 
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Author</h6>
-                                <h7 class="card-subtitle mb-2 text-muted">Author</h7>
-                                <p class="card-text">Des quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Author</h6>
-                                <h7 class="card-subtitle mb-2 text-muted">Author</h7>
-                                <p class="card-text">Des quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Author</h6>
-                                <h7 class="card-subtitle mb-2 text-muted">Genere</h7>
-                                <p class="card-text">Des quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Author</h6>
-                                <h7 class="card-subtitle mb-2 text-muted">Author</h7>
-                                <p class="card-text">Des quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Author</h6>
-                                <h7 class="card-subtitle mb-2 text-muted">Author</h7>
-                                <p class="card-text">Des quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Author</h6>
-                                <h7 class="card-subtitle mb-2 text-muted">Author</h7>
-                                <p class="card-text">Des quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Author</h6>
-                                <h7 class="card-subtitle mb-2 text-muted">Genere</h7>
-                                <p class="card-text">Des quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Author</h6>
-                                <h7 class="card-subtitle mb-2 text-muted">Author</h7>
-                                <p class="card-text">Des quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Author</h6>
-                                <h7 class="card-subtitle mb-2 text-muted">Author</h7>
-                                <p class="card-text">Des quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Author</h6>
-                                <h7 class="card-subtitle mb-2 text-muted">Author</h7>
-                                <p class="card-text">Des quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a class="btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

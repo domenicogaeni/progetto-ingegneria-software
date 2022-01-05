@@ -1,20 +1,22 @@
 $(document).ready(function (){
     $("#inputLogout").click( function(){
-        $.ajax({
-            type: 'GET',
-            url: 'https://ingegneria-software.herokuapp.com/public/auth/logout',
-            beforeSend: function(xhr) {
-              if (localStorage.token) {
-                alert(localStorage.token);
-                xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.token);
-              }
-            },
-            success: function(data) {
-              alert('Hello! You have successfully accessed to /api/profile.');
-            },
-            error: function(data) {
-              alert("Sorry, you are not logged in.");
-            }
-          });
+      $.ajax({
+        type: 'POST',
+        url: 'https://ingegneria-software.herokuapp.com/public/auth/logout',
+        crossDomain: true,
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
+        beforeSend: function(xhr) {
+          if (localStorage.token) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.token);
+          }
+        },
+        success: function(data) {
+          window.location.href = '../login.html';
+        },
+        error: function(data) {
+          alert("Error!");
+        }
+      });
     })
 })
