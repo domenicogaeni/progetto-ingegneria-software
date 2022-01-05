@@ -11,7 +11,6 @@ $(document).ready(function(){
                   };
                   //convert string in json object
                   var data = JSON.stringify(json_ob);
-                  alert(data);
                   $.ajax({
                     url:"https://ingegneria-software.herokuapp.com/public/auth/login",
                     type:"POST",
