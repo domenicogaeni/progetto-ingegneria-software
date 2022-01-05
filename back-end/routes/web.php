@@ -3,6 +3,7 @@
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -26,6 +27,12 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
         $router->get('', BookController::class . '@search');
         $router->post('', BookController::class . '@new');
         $router->delete('{id}', BookController::class . '@delete');
+        $router->get('on_sale', BookController::class . '@getMyBooksCurrentlyOnSale');
+    });
+
+    $router->group(['prefix' => 'order'], function () use ($router) {
+        $router->get('', OrderController::class . '@getMyOrders');
+        $router->post('', OrderController::class . '@new');
     });
 
     $router->group(['prefix' => 'auth'], function () use ($router) {

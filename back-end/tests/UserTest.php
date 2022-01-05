@@ -58,7 +58,7 @@ class UserTest extends TestCase
                 'auth_token' => [
                     'auth_token' => $response->auth_token->auth_token,
                     'expired_at' => $response->auth_token->expired_at,
-                ],                
+                ],
                 'card_number' => $cardNumber,
                 'iban' => $iban,
             ],

@@ -113,4 +113,80 @@ class BookTest extends TestCase
         ]));
         $this->seeStatusCode(401);
     }
+
+    /**
+     * Test call to get my books currently on sale.
+     */
+    public function testGetMyBooksOnSale()
+    {
+        $this->refreshApplication();
+
+        /** @var User $user */
+        $user = User::factory()->create();
+        $book1 = Book::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $book2 = Book::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $book3 = Book::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $this->actingAs($user);
+
+        $this->get('book/on_sale');
+        $this->seeStatusCode(200);
+        $this->seeJson([
+            'data' => [
+                [
+                    'id' => $book1->id,
+                    'title' => $book1->title,
+                    'isbn' => $book1->isbn,
+                    'description' => $book1->description,
+                    'authors' => $book1->authors,
+                    'gender' => $book1->gender,
+                    'price' => $book1->price,
+                    'reseller_info' => [
+                        'name' => $user->name,
+                        'last_name' => $user->last_name,
+                        'email' => $user->email,
+                    ],
+                    'average_vote' => null,
+                    'book_reviews' => [],
+                ],
+                [
+                    'id' => $book2->id,
+                    'title' => $book2->title,
+                    'isbn' => $book2->isbn,
+                    'description' => $book2->description,
+                    'authors' => $book2->authors,
+                    'gender' => $book2->gender,
+                    'price' => $book2->price,
+                    'reseller_info' => [
+                        'name' => $user->name,
+                        'last_name' => $user->last_name,
+                        'email' => $user->email,
+                    ],
+                    'average_vote' => null,
+                    'book_reviews' => [],
+                ],
+                [
+                    'id' => $book3->id,
+                    'title' => $book3->title,
+                    'isbn' => $book3->isbn,
+                    'description' => $book3->description,
+                    'authors' => $book3->authors,
+                    'gender' => $book3->gender,
+                    'price' => $book3->price,
+                    'reseller_info' => [
+                        'name' => $user->name,
+                        'last_name' => $user->last_name,
+                        'email' => $user->email,
+                    ],
+                    'average_vote' => null,
+                    'book_reviews' => [],
+                ],
+            ],
+        ]);
+    }
 }
