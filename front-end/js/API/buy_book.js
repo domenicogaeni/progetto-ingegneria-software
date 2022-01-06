@@ -5,7 +5,7 @@ $(document).ready(function(){
         $('#myModal').modal('hide');
     })
     $("#buyButton").click(function(){
-        if($("#input_indConsegna".val().length>0)){
+        if($("#input_indConsegna").val().length>0){
             var body = {
                 book_id : id_book,
                 address : $("#input_indConsegna").val()
@@ -25,6 +25,7 @@ $(document).ready(function(){
                 },
                 success: function(data) {
                     alert("book bought!");
+                    location.reload();
                 }
             })
         }else{
