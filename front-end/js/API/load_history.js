@@ -20,7 +20,7 @@ $(document).ready(function (){
             console.log(element.title);
             if(index%4==0)
                 html_book += '<div class="row">';
-            html_book += '<div class="col-xl-3 col-md-6 mb-4">\
+            html_book += '<div class="col-xl-3 col-md-6 mb-4 margin_value">\
                                 <div class="card">\
                                     <div class="card-body buy_card">\
                                         <h5 class="card-title">' + element.book_info.title + '</h5>\
