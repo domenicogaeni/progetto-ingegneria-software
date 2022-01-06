@@ -7,6 +7,10 @@
         <meta name="author" content="" />
         <title>MyMarketplace - History</title>
         <link href="../css/styles.css" rel="stylesheet" />
+
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="../js/API/load_history.js"></script>
+
         <style>
             .margin_value{
                 margin: 20px;
@@ -58,40 +62,16 @@
                     </div>
                 </nav>
             </div>
+            <!--books append value-->
             <div id="layoutSidenav_content">
-                <div class="row">
-                    <div class="col-xl-3 col-md-6 mb-4 margin_value">
-                        <div class="card sell_card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <h7 class="card-subtitle mb-2 text-muted">Author - Genere</h7>
-                                <h6 class="card-subtitle mb-2 text-muted">Price</h6>
-                                <h8 class="card-subtitle mb-2 text-muted"></h8>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 mb-4 margin_value">
-                        <div class="card buy_card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <h7 class="card-subtitle mb-2 text-muted">Author - Genere</h7>
-                                <h6 class="card-subtitle mb-2 text-muted">Price</h6>
-                                <h8 class="card-subtitle mb-2 text-muted"></h8>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 mb-4 margin_value">
-                        <div class="card sell_card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <h7 class="card-subtitle mb-2 text-muted">Author - Genere</h7>
-                                <h6 class="card-subtitle mb-2 text-muted">Price</h6>
-                                <h8 class="card-subtitle mb-2 text-muted"></h8>
-                            </div>
-                        </div>
-                    </div>
+                <h5>Libri Comprati</h5>
+                <div id="books_search">
+
                 </div>
-                
+                <h5>Libri Venduti</h5>
+                <div id="books_sell">
+
+                </div>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
