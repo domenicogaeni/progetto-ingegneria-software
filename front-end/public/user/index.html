@@ -7,7 +7,23 @@
         <meta name="author" content="" />
         <title>Static Navigation - SB Admin</title>
         <link href="../css/styles.css" rel="stylesheet" />
+        <style>
+            .card{
+                background-color: rgb(151, 249, 252); 
+                border-radius: 10px;
+            }
+            .margin-down{
+                margin-bottom: 10px;
+            }
+        </style>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="../js/API/logout.js"></script>
+        <script src="../js/API/search_book.js"></script>
+        <script src="../js/API/buy_book.js"></script>
+        <script src="../js/API/is_logged.js"></script>
+
     </head>
     <body>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -20,7 +36,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" ><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li><a class="dropdown-item" href="#!" id="inputLogout">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -30,7 +46,7 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link active" href="index.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
@@ -48,25 +64,40 @@
                 </nav>
             </div>
             <div id="layoutSidenav_content">
-                 <!-- Navbar Search-->
-                <form style="margin-left: auto; margin-right: auto; margin-top: 10px;">
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="btn btn-danger closeModal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="myModalLabel">Acquisto</h4>
+                        </div>
+                        <div class="modal-body margin-down">
+                          <h5>Sei sicuro di voler procedere con l'acquisto?</h5>
+                          <div class="form-group margin-down">
+                            <label for="input_indConsegna">Indirizzo Consegna</label>
+                            <input type="text" class="form-control" id="input_indConsegna" placeholder="Specificare l'Indirizzo">
+                          </div>
+                          <h7>Totale:<span id="price_value"></span>€</h7>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default closeModal" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary" id="buyButton" >Buy Now</button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <!--end modal-->
+                 <!-- Search InputBox-->
+                <form style="margin-left: auto; margin-right: auto; margin-top: 10px;margin-bottom: 5px;">
                     <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Search by title, ISBN, author..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                        <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                        <input id="inputSearch" class="form-control" type="text" placeholder="Search by title, ISBN, author..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                        <button class="btn btn-primary" id="btnSearch" type="button"><i class="fas fa-search"></i></button>
                     </div>
                 </form>
-                <main>
-                    <div class="container-fluid px-4">
+                <div id="books_searched" style="margin-top: 10px;">
 
-                    </div>
-                </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; MyMarketplace 2021</div>
-                        </div>
-                    </div>
-                </footer>
+                </div>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
