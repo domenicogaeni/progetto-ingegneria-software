@@ -78,4 +78,17 @@ class BookController extends BaseController
             ->orWhere('gender', 'like', '%' . $params['value'] . '%')
             ->get();
     }
+
+    /**
+     * Get list of my books currently on sale.
+     *
+     * @return Book[]
+     */
+    public function getMyBooksCurrentlyOnSale()
+    {
+        $user = Auth::user();
+
+        return Book::where('user_id', $user->id)
+            ->get();
+    }
 }

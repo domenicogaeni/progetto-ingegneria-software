@@ -1,12 +1,55 @@
 name: CI/CD
 
-on: push
-
+on:
+  push:
+    branches:
+      - master
 jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: project_testing
+        ports:
+          - 3306
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Copy .env
+        working-directory: ./back-end
+        run: cp environments/ci/.env.example .env
+
+      - name: Install Dependencies
+        working-directory: ./back-end
+        run: composer install --ignore-platform-reqs
+
+      - name: Run Migrations
+        working-directory: ./back-end
+        run: php artisan migrate
+        env:
+          DB_PORT: ${{ job.services.mysql.ports['3306'] }}
+
+      - name: Run PHPUnit tests
+        working-directory: ./back-end
+        run: composer test
+        env:
+          DB_PORT: ${{ job.services.mysql.ports['3306'] }}
+          XDEBUG_MODE: coverage
+
+      - name: Run Psalm
+        working-directory: ./back-end
+        run: ./vendor/bin/psalm --shepherd --show-info=false --stats
+
   deploy:
     runs-on: ubuntu-latest
 
-    if: github.ref == 'refs/heads/master'
+    needs: test
 
     steps:
       - name: Checkout code

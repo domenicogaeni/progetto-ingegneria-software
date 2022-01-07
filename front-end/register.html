@@ -11,54 +11,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-        <script type="text/javascript">
-
-        function isEmail($email) {
-            if($email.length==0)
-                return false;
-            else{
-                var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-                return emailReg.test( $email );
-            }
-        } 
-        $(document).ready(function(){
-            $('#registerButton').click(function(){
-                //chech if two values of password are equal e not null
-                if($('#inputPassword').val() == $('#inputPasswordConfirm').val() && $('#inputPassword').val().length>0){
-                    $('#inputPasswordConfirm').removeClass('btn-danger');
-
-                    //check if fname is not null
-                    if($('#inputFirstName').val().length >0 ){
-                        $('#inputFirstName').removeClass('btn-danger');
-
-                        //check if lname is not null
-                        if($('#inputLastName').val().length >0 ){
-                            $('#inputLastName').removeClass('btn-danger');
-
-                            //check if email is not null
-                            if(isEmail($('#inputEmail').val())){
-                                $('#inputEmail').removeClass('btn-danger');
-
-                                //to do: register user
-
-                            }else{
-                                $('#inputEmail').addClass('btn-danger');
-                            }
-                        }else{
-                            //cognome vuoto
-                            $('#inputLastName').addClass('btn-danger');
-                        }
-                    }else{
-                        ////nome vuoto
-                        $('#inputFirstName').addClass('btn-danger');
-                    }
-                }else{
-                    //password sbagliate
-                    $('#inputPasswordConfirm').addClass('btn-danger');
-                }
-            });
-        });
-        </script>
+        <script src="js/API/sign_up.js"></script>
 
     </head>
     <body class="bg-primary">
@@ -86,14 +39,24 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
-                                                <label for="inputEmail">Email address</label>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
+                                                        <label for="inputEmail">Email address</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputNumPhone" type="text" placeholder="Phone number" />
+                                                        <label for="inputNumPhone">Phone Number</label>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" />
+                                                        <input class="form-control" id="inputPassword" type="password" placeholder="Pwd (min.12)" />
                                                         <label for="inputPassword">Password</label>
                                                     </div>
                                                 </div>
