@@ -10,14 +10,13 @@ $(document).ready(function (){
             xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.token);
             }
         },
-        success: function(data) {
+        success: function(data_get) {
             //story of bought book section
             $("#books_search").empty();
-            var data = data.data.bought_books;
+            var data = data_get.data.bought_books;
             var html_book = "";
             for (let index = 0; index < data.length; index++) {
             const element = data[index];
-            console.log(element.title);
             if(index%4==0)
                 html_book += '<div class="row">';
             html_book += '<div class="col-xl-3 col-md-6 mb-4 margin_value">\
@@ -38,11 +37,10 @@ $(document).ready(function (){
 
             //story of sold book section <campi mancano>
             $("#books_sell").empty();
-            var data = data.data.bought_books;
+            var data = data_get.data.sold_books;
             var html_book = "";
             for (let index = 0; index < data.length; index++) {
             const element = data[index];
-            console.log(element.title);
             if(index%4==0)
                 html_book += '<div class="row">';
             html_book += '<div class="col-xl-3 col-md-6 mb-4">\
