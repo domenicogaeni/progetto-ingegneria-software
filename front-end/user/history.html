@@ -11,6 +11,9 @@
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="../js/API/load_history.js"></script>
 
+        <script src="../js/API/logout.js"></script>
+        <script src="../js/API/is_logged.js"></script>
+
         <style>
             .sell_card{
                 border-radius: 10px;
@@ -34,7 +37,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" ><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li><a class="dropdown-item" id="inputLogout">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -49,11 +52,11 @@
                                 Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading">Manage</div>
-                            <a class="nav-link collapsed active" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link active" href="history.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                History
+                                Show history
                             </a>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                            <a class="nav-link" href="sell.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Sell
                             </a>
