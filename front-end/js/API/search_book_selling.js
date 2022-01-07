@@ -1,7 +1,7 @@
 $(document).ready(function (){
   $.ajax({
       type: 'GET',
-      url: 'https://ingegneria-software.herokuapp.com/public/book/onSale',
+      url: 'https://ingegneria-software.herokuapp.com/public/book/on_sale',
       crossDomain: true,
       contentType:"application/json; charset=utf-8",
       dataType:"json",
@@ -29,7 +29,7 @@ $(document).ready(function (){
                                       if(element.description != null) 
                                         html_book += element.description;
                         html_book += '</p>\
-                                      <a class="btn btn-primary buttonBuy" onclick="openModal(' + element.price + ',' + element.id + ')">Buy</a>\
+                                      <a class="btn btn-danger" onclick=\'deleteBook("' + element.title + '","' + element.isbn + '","' + element.authors + '",' + element.price + ',"' + element.gender + '")\'>Interrompi Vendita</a>\
                                   </div>\
                               </div>\
                           </div>';
