@@ -29,7 +29,7 @@ $(document).ready(function (){
                                       if(element.description != null) 
                                         html_book += element.description;
                         html_book += '</p>\
-                                      <a class="btn btn-danger" onclick=\'deleteBook("' + element.title + '","' + element.isbn + '","' + element.authors + '",' + element.price + ',"' + element.gender + '")\'>Interrompi Vendita</a>\
+                                      <a class="btn btn-danger" onclick=\'deleteBook(' + element.id + ',"' + element.title + '","' + element.isbn + '","' + element.authors + '",' + element.price + ',"' + element.gender + '")\'>Interrompi Vendita</a>\
                                   </div>\
                               </div>\
                           </div>';

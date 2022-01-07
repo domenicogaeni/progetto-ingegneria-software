@@ -1,4 +1,4 @@
-function deleteBook(title, isbn, authors, price, gender){
+function deleteBook(id, title, isbn, authors, price, gender){
     //elimina libro
     var json_ob = {
         title: title,
@@ -10,7 +10,7 @@ function deleteBook(title, isbn, authors, price, gender){
     console.log(JSON.stringify(json_ob));
     $.ajax({
         type: 'DELETE',
-        url: 'https://ingegneria-software.herokuapp.com/public/book',
+        url: 'https://ingegneria-software.herokuapp.com/public/book/' + id,
         crossDomain: true,
         contentType:"application/json; charset=utf-8",
         dataType:"json",
