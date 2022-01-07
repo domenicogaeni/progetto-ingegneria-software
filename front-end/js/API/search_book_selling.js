@@ -19,7 +19,7 @@ $(document).ready(function (){
           if(index%4==0)
             html_book += '<div class="row">';
           html_book += '<div class="col-xl-3 col-md-6 mb-4">\
-                              <div class="card">\
+                              <div class="card card_color">\
                                   <div class="card-body">\
                                       <h5 class="card-title">' + element.title + '</h5>\
                                       <h7 class="card-subtitle mb-2 text-muted">' + element.authors + ' - ' + element.gender + '</h7>\
