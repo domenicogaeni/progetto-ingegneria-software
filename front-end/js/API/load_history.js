@@ -20,8 +20,8 @@ $(document).ready(function (){
             if(index%4==0)
                 html_book += '<div class="row">';
             html_book += '<div class="col-xl-3 col-md-6 mb-4">\
-                                <div class="card">\
-                                    <div class="card-body buy_card">\
+                                <div class="card buy_card">\
+                                    <div class="card-body">\
                                         <h5 class="card-title">' + element.book_info.title + '</h5>\
                                         <h7 class="card-subtitle mb-2 text-muted">' + element.book_info.authors + ' - ' + element.book_info.gender + '</h7>\
                                         <h6 class="card-subtitle mb-2 text-muted">Prezzo: ' + element.book_info.price + '€</h6>\
@@ -44,8 +44,8 @@ $(document).ready(function (){
             if(index%4==0)
                 html_book += '<div class="row">';
             html_book += '<div class="col-xl-3 col-md-6 mb-4">\
-                                <div class="card">\
-                                    <div class="card-body sell_card">\
+                                <div class="card sell_card">\
+                                    <div class="card-body">\
                                         <h5 class="card-title">' + element.book_info.title + '</h5>\
                                         <h7 class="card-subtitle mb-2 text-muted">' + element.book_info.authors + ' - ' + element.book_info.gender + '</h7>\
                                         <h6 class="card-subtitle mb-2 text-muted">Prezzo: ' + element.book_info.price + '€</h6>\
