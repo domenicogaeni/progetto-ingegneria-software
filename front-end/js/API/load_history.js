@@ -19,7 +19,7 @@ $(document).ready(function (){
             const element = data[index];
             if(index%4==0)
                 html_book += '<div class="row">';
-            html_book += '<div class="col-xl-3 col-md-6 mb-4 margin_value">\
+            html_book += '<div class="col-xl-3 col-md-6 mb-4">\
                                 <div class="card">\
                                     <div class="card-body buy_card">\
                                         <h5 class="card-title">' + element.book_info.title + '</h5>\
@@ -50,7 +50,7 @@ $(document).ready(function (){
                                         <h7 class="card-subtitle mb-2 text-muted">' + element.book_info.authors + ' - ' + element.book_info.gender + '</h7>\
                                         <h6 class="card-subtitle mb-2 text-muted">Prezzo: ' + element.book_info.price + '€</h6>\
                                         <h8 class="card-subtitle mb-2 text-muted"></h8>\
-                                        <p class="card-text">Comprato da: ' + element.book_info.reseller_info.name + ' ' + element.book_info.reseller_info.last_name + '</p>\
+                                        <p class="card-text">Comprato da: ' + element.buyer_info.name + ' ' + element.buyer_info.last_name + '</p>\
                                     </div>\
                                 </div>\
                             </div>';
