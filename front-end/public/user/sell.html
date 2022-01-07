@@ -8,9 +8,24 @@
         <title>Static Navigation - SB Admin</title>
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+        <style>
+          .card_color{
+            background-color: rgb(141, 194, 138);
+            border-radius: 10px;
+          }
+        </style>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+        <script src="../js/API/is_logged.js"></script>
+        <script src="../js/API/delete_book.js"></script>
+        <script src="../js/API/logout.js"></script>
+        <script src="../js/sell_book_modal.js"></script>
+        <script src="../js/API/sell_book.js"></script>
+        <script src="../js/API/search_book_selling.js"></script>
     </head>
     <body>
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <nav class="sb-topnav navbar navbar-expand nisLogged request navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="index.html">MyMarketplace</a>
             <!-- Sidebar Toggle-->
@@ -20,7 +35,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" ><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li><a class="dropdown-item" id="inputLogout">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -35,11 +50,11 @@
                                 Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading">Manage</div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link" href="history.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Buy
+                                Show history
                             </a>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                            <a class="nav-link active" href="sell.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Sell
                             </a>
@@ -48,11 +63,60 @@
                 </nav>
             </div>
             <div id="layoutSidenav_content">
-                <main>
-                    <div class="container-fluid px-4">
-
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="btn btn-danger closeModal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="myModalLabel">Vendita</h4>
+                        </div>
+                        <div class="modal-body margin-down">
+                          <h5>Inserisca il prodotto da vendere</h5>
+                          <div class="form-group margin-down">
+                            <label for="input_titolo">Titolo</label>
+                            <input type="text" class="form-control" id="input_titolo" placeholder="Titolo">
+                          </div>
+                          <div class="form-group margin-down">
+                            <label for="input_autore">Autore</label>
+                            <input type="text" class="form-control" id="input_autore" placeholder="Autore">
+                          </div>
+                          <div class="form-group margin-down">
+                            <label for="input_genere">Genere</label>
+                            <input type="text" class="form-control" id="input_genere" placeholder="Genere">
+                          </div>
+                          <div class="form-group margin-down">
+                            <label for="input_ISBN">ISBN</label>
+                            <input type="text" class="form-control" id="input_ISBN" placeholder="ISBN">
+                          </div>
+                          <div class="form-group margin-down">
+                            <label for="input_price">Price</label>
+                            <input type="number" class="form-control" id="input_price" placeholder="Prezzo di vendita">
+                          </div>
+                          <div class="alert alert-danger" style="margin-top: 30px;" role="alert" id="alert_uncomplete">
+                            Attenzione, compilare tutti i campi!
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default closeModal" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary" id="buttonActionSell">Sell Now</button>
+                        </div>
+                      </div>
                     </div>
-                </main>
+                </div>
+                <!--end modal-->
+                <div style="margin-top: 10px; margin-left: auto; margin-right: auto; margin-bottom: 20px;">
+                        <div class="btn btn-primary" style="width: 100px; height: 50px;" id="buttonSell">
+                            Vendi
+                        </div>
+                </div>
+                <h5  style="margin-bottom:10px;">Libri attualmente in vendita</h5>
+                <!--Libri Attualmente in Vendita-->
+                <div id="libriVendita">
+
+                </div>
+                <!-- End Libri Vendita-->
+
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
