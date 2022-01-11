@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends BaseController
 {
@@ -72,10 +73,10 @@ class BookController extends BaseController
     {
         $params = $request->only(['value']);
 
-        return Book::where('title', 'like', '%' . $params['value'] . '%')
-            ->orWhere('isbn', 'like', '%' . $params['value'] . '%')
-            ->orWhere('authors', 'like', '%' . $params['value'] . '%')
-            ->orWhere('gender', 'like', '%' . $params['value'] . '%')
+        return Book::where(DB::raw('LOWER(title)'), 'like', '%' . strtolower($params['value']) . '%')
+            ->orWhere(DB::raw('LOWER(isbn)'), 'like', '%' . strtolower($params['value']) . '%')
+            ->orWhere(DB::raw('LOWER(authors)'), 'like', '%' . strtolower($params['value']) . '%')
+            ->orWhere(DB::raw('LOWER(gender)'), 'like', '%' . strtolower($params['value']) . '%')
             ->get();
     }
 
