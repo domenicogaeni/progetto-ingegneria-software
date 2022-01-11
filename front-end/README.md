@@ -1,5 +1,7 @@
 # 🚧 Front-end della piattaforma
 
+Link alla piattaforma: [https://front-end-ingegneria-software.herokuapp.com/](https://front-end-ingegneria-software.herokuapp.com/)
+
 **Cartella che si occupa di interrogare il back end tramite chiamate API e mostrare i risultati.**
 
 È costituita da:
