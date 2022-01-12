@@ -32,7 +32,7 @@ $(document).ready(function () {
           " - " +
           element.gender +
           '</h7>\
-                                      <h6 class="card-subtitle mb-2 text-muted">Price: ' +
+                                      <h6 class="card-subtitle mb-2 text-muted">Prezzo: ' +
           element.price +
           '€</h6>\
                                       <h8 class="card-subtitle mb-2 text-muted"></h8>\
