@@ -54,6 +54,7 @@ class OrderTest extends TestCase
                     'price' => $book->price,
                     'description' => $book->description,
                     'gender' => $book->gender,
+                    'average_vote' => $book->average_vote,
                     'reseller_info' => [
                         'name' => $reseller->name,
                         'last_name' => $reseller->last_name,
@@ -130,6 +131,7 @@ class OrderTest extends TestCase
                             'price' => $bookUser->price,
                             'description' => $bookUser->description,
                             'gender' => $bookUser->gender,
+                            'average_vote' => $bookUser->average_vote,
                             'reseller_info' => [
                                 'name' => $user->name,
                                 'last_name' => $user->last_name,
@@ -157,6 +159,7 @@ class OrderTest extends TestCase
                             'price' => $bookReseller->price,
                             'description' => $bookReseller->description,
                             'gender' => $bookReseller->gender,
+                            'average_vote' => $bookReseller->average_vote,
                             'reseller_info' => [
                                 'name' => $reseller->name,
                                 'last_name' => $reseller->last_name,
