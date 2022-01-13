@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\BookReview;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -22,6 +23,10 @@ class BookController extends BaseController
             ],
             'search' => [
                 'value' => 'required|string',
+            ],
+            'vote' => [
+                'vote' => 'required|integer|min:1|max:5',
+                'description' => 'filled|string|max:255',
             ],
         ];
     }
@@ -91,5 +96,35 @@ class BookController extends BaseController
 
         return Book::where('user_id', $user->id)
             ->get();
+    }
+
+    /**
+     * Function to vote a book.
+     *
+     * @param Request $request
+     * @param int     $id
+     */
+    public function vote(Request $request, int $id)
+    {
+        $book = Book::find($id);
+        if (!$book) {
+            abort(404, 'Book not found');
+        }
+
+        // Check that user is not the reseller of the book.
+        if ($book->user_id == Auth::user()->id) {
+            abort(403, 'You cannot vote for your own book');
+        }
+
+        BookReview::where('book_id', $id)
+            ->where('user_id', Auth::user()->id)
+            ->delete();
+
+        $review = new BookReview();
+        $review->book_id = $id;
+        $review->user_id = Auth::user()->id;
+        $review->fill($request->only(['vote', 'description']));
+
+        $review->save();
     }
 }

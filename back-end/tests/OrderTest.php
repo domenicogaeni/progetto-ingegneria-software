@@ -97,7 +97,7 @@ class OrderTest extends TestCase
         $addressUser = Address::factory()->create([
             'user_id' => $user->id,
         ]);
-        
+
         Order::factory()->create([
             'user_id' => $user->id,
             'book_id' => $bookReseller->id,
@@ -142,7 +142,7 @@ class OrderTest extends TestCase
                             'last_name' => $reseller->last_name,
                             'email' => $reseller->email,
                         ],
-                    ]
+                    ],
                 ],
                 'sold_books' => [
                     [
@@ -169,8 +169,8 @@ class OrderTest extends TestCase
                             'last_name' => $user->last_name,
                             'email' => $user->email,
                         ],
-                    ]
-                ],                
+                    ],
+                ],
             ],
         ]);
     }
