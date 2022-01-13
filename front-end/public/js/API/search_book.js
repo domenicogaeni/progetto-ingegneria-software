@@ -24,46 +24,35 @@ $(document).ready(function () {
           '<div class="col-xl-3 col-md-6 mb-4">\
             <div class="card">\
                 <div class="card-body">\
-                    <h5 class="card-title">' +
-          element.title +
-          '</h5>\
-          <h7 class="card-subtitle mb-2 text-muted"> ISBN: ' +
-          element.isbn +
-          '</h7><br/>\
-          <h7 class="card-subtitle mb-2 text-muted">' +
-          element.authors +
-          " - " +
-          element.gender +
-          '</h7>\
-          <h6 class="card-subtitle mb-2 text-muted">Prezzo: ' +
-          element.price +
-          '€</h6>\
-           <h8 class="card-subtitle mb-2 text-muted"></h8>';
-          if (element.description != null) 
-            html_book += '<p class="card-text">' + element.description + '</p>';
-          if(element.average_vote != null){
+                  <h5 class="card-title">' +
+                  element.title +
+                  '</h5>\
+                  <h7 class="card-subtitle mb-2 text-muted"> ISBN: ' +
+                  element.isbn +
+                  '</h7><br/>\
+                  <h7 class="card-subtitle mb-2 text-muted">' +
+                  element.authors +
+                  " - " +
+                  element.gender +
+                  '</h7>\
+                  <h6 class="card-subtitle mb-2 text-muted">Prezzo: ' +
+                  element.price +
+                  '€</h6>\
+                  <h8 class="card-subtitle mb-2 text-muted"></h8>';
+                  if (element.description != null) 
+                    html_book += '<p class="card-text">' + element.description + '</p>';
+                  if(element.average_vote != null)
+                    html_book += '<h9 class="card-subtitle mb-2 text-muted">Media Voto:' +  element.average_vote + ' </h9>';
 
-            html_book += '<section class="p-4 d-flex justify-content-center text-center w-100">';
-            
-            for(var i=0; i<5; i++){
-              if((i+0.5)<=parseInt(element.average_vote)){
-                html_book +='<i class="far fa-star fa-sm text-primary fas active"</i>';
-              }else{
-                html_book +='<i class="far fa-star fa-sm text-primary"</i>';
-                console.log("NO");
-              }
-            }
-
-            html_book += '</section>';
-          }
-          html_book += '<a class="btn btn-primary buttonBuy" onclick="openModal(' +
-          element.price +
-          "," +
-          element.id +
-          ')">Compra</a>\
+                  html_book += '<a style="margin-left:5px" class="btn btn-primary buttonBuy" onclick="openModal(' +
+                  element.price +
+                  ',' +
+                  element.id +
+                  ')">Compra</a>\
                 </div>\
             </div>\
           </div>';
+          console.log(html_book);
           if (index % 4 == 3 || index == data.length - 1) html_book += "</div>";
         }
         $("#books_searched").append(html_book);
