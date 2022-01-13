@@ -35,7 +35,7 @@ $(document).ready(function (){
                                                 <i id="star4" class="far fa-star fa-sm text-primary" onclick="selStar(4)"></i>\
                                         </section>\
                                         <div class="col-md-12 text-center">\
-                                            <button type="button" class="btn btn-primary">Vota</button>\
+                                            <button type="button" class="btn btn-primary" onclick="vote(' + element.book_info.id + ')">Vota</button>\
                                         </div>\
                                     </div>\
                                 </div>\
@@ -84,11 +84,34 @@ function selStar(num){
             $("#star"+i).removeClass("fas active").addClass("far");
     }
 }
-function vote(){
+function vote(id_book){
     if(value==0)
         alert("Error");
     else{
+        var json_obj = {
+            vote: value,
+            description: "Interessante",
+        };
+        var data = JSON.stringify(json_obj);
         //http POST request
-
+        $.ajax({
+            type: 'POST',
+            url: 'https://ingegneria-software.herokuapp.com/public/book/' + id_book + '/vote',
+            crossDomain: true,
+            contentType:"application/json; charset=utf-8",
+            dataType:"json",
+            data:data,
+            beforeSend: function(xhr) {
+                if (localStorage.token) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.token);
+                }
+            },
+            success: function(data_get) {
+                console.log("ok")
+            },
+            error: function(){
+                alert("Error!");
+            }
+        });
     }
 }
