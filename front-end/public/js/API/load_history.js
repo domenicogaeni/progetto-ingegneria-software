@@ -51,6 +51,25 @@ $(document).ready(function (){
                                         <h6 class="card-subtitle mb-2 text-muted">Prezzo: ' + element.book_info.price + '€</h6>\
                                         <h8 class="card-subtitle mb-2 text-muted"></h8>\
                                         <p class="card-text">Comprato da: ' + element.buyer_info.name + ' ' + element.buyer_info.last_name + '</p>\
+                                        <section class="p-4 d-flex justify-content-center text-center w-100">\
+                                            <ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="3">\
+                                                <li>\
+                                                <i class="fa-star fa-sm text-primary fas active"></i>\
+                                                </li>\
+                                                <li>\
+                                                <i class="fa-star fa-sm text-primary fas active"></i>\
+                                                </li>\
+                                                <li>\
+                                                <i class="fa-star fa-sm text-primary fas active"></i>\
+                                                </li>\
+                                                <li>\
+                                                <i class="far fa-star fa-sm text-primary"></i>\
+                                                </li>\
+                                                <li>\
+                                                <i class="far fa-star fa-sm text-primary"></i>\
+                                                </li>\
+                                            </ul>\
+                                       </section>\
                                     </div>\
                                 </div>\
                             </div>';
