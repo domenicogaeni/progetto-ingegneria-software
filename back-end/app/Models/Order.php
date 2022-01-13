@@ -47,6 +47,7 @@ class Order extends Model
             'price' => $book->price,
             'description' => $book->description,
             'gender' => $book->gender,
+            'average_vote' => $book->average_vote,
             'reseller_info' => $book->reseller_info,
         ];
     }
