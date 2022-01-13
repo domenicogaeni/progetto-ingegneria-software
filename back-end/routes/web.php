@@ -26,6 +26,7 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
     $router->group(['prefix' => 'book'], function () use ($router) {
         $router->get('', BookController::class . '@search');
         $router->post('', BookController::class . '@new');
+        $router->post('{id}/vote', BookController::class . '@vote');
         $router->delete('{id}', BookController::class . '@delete');
         $router->get('on_sale', BookController::class . '@getMyBooksCurrentlyOnSale');
     });

@@ -84,7 +84,7 @@ class Book extends Model
     {
         $reviews = $this->book_reviews()->get();
 
-        return $reviews->avg('vote');
+        return $reviews->avg('vote') > 0 ? number_format($reviews->avg('vote'), 1, ',') : null;
     }
 
     public function user()

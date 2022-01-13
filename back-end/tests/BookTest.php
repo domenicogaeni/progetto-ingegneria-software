@@ -189,4 +189,92 @@ class BookTest extends TestCase
             ],
         ]);
     }
+
+    public function testVoteABook()
+    {
+        $this->refreshApplication();
+
+        /** @var User $user */
+        $user = User::factory()->create();
+        $book = Book::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $this->actingAs($user);
+
+        // Owener can't vote for his book.
+        $this->post('book/' . $book->id . '/vote', [
+            'vote' => 1,
+            'description' => 'The book was a shit.',
+        ]);
+        $this->seeStatusCode(403);
+
+        // Vote can't be 0
+        $this->post('book/' . $book->id . '/vote', [
+            'vote' => 0,
+            'description' => 'The book was a shit.',
+        ]);
+        $this->seeStatusCode(422);
+
+        $this->refreshApplication();
+        /** @var User $user1 */
+        $user1 = User::factory()->create();
+        $this->actingAs($user1);
+        $this->post('book/' . $book->id . '/vote', [
+            'vote' => 2,
+            'description' => 'The book was a shit.',
+        ]);
+        $this->seeStatusCode(200);
+
+        $this->refreshApplication();
+        /** @var User $user2 */
+        $user2 = User::factory()->create();
+        $this->actingAs($user2);
+        $this->post('book/' . $book->id . '/vote', [
+            'vote' => 4,
+        ]);
+        $this->seeStatusCode(200);
+
+        // Check the average vote for the voting book.
+        $this->get('book?' . http_build_query([
+            'value' => $book->title,
+        ]));
+        $this->seeStatusCode(200);
+        $this->seeJson([
+            'data' => [[
+                'id' => $book->id,
+                'title' => $book->title,
+                'isbn' => $book->isbn,
+                'description' => $book->description,
+                'authors' => $book->authors,
+                'gender' => $book->gender,
+                'price' => $book->price,
+                'reseller_info' => [
+                    'name' => $user->name,
+                    'last_name' => $user->last_name,
+                    'email' => $user->email,
+                ],
+                'average_vote' => '3,0',
+                'book_reviews' => [
+                    [
+                        'vote' => 2,
+                        'description' => 'The book was a shit.',
+                        'user_info' => [
+                            'name' => $user1->name,
+                            'last_name' => $user1->last_name,
+                            'email' => $user1->email,
+                        ],
+                    ],
+                    [
+                        'vote' => 4,
+                        'description' => null,
+                        'user_info' => [
+                            'name' => $user2->name,
+                            'last_name' => $user2->last_name,
+                            'email' => $user2->email,
+                        ],
+                    ],
+                ],
+            ]],
+        ]);
+    }
 }
