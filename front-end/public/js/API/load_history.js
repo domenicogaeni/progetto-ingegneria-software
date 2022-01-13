@@ -27,6 +27,16 @@ $(document).ready(function (){
                                         <h6 class="card-subtitle mb-2 text-muted">Prezzo: ' + element.book_info.price + '€</h6>\
                                         <h8 class="card-subtitle mb-2 text-muted"></h8>\
                                         <p class="card-text">Comprato da: ' + element.book_info.reseller_info.name + ' ' + element.book_info.reseller_info.last_name + '</p>\
+                                        <section class="p-4 d-flex justify-content-center text-center w-100">\
+                                                <i id="star0" class="far fa-star fa-sm text-primary" onclick="selStar(0)"></i>\
+                                                <i id="star1" class="far fa-star fa-sm text-primary" onclick="selStar(1)"></i>\
+                                                <i id="star2" class="far fa-star fa-sm text-primary" onclick="selStar(2)"></i>\
+                                                <i id="star3" class="far fa-star fa-sm text-primary" onclick="selStar(3)"></i>\
+                                                <i id="star4" class="far fa-star fa-sm text-primary" onclick="selStar(4)"></i>\
+                                        </section>\
+                                        <div class="col-md-12 text-center">\
+                                            <button type="button" class="btn btn-primary">Vota</button>\
+                                        </div>\
                                     </div>\
                                 </div>\
                             </div>';
@@ -51,25 +61,6 @@ $(document).ready(function (){
                                         <h6 class="card-subtitle mb-2 text-muted">Prezzo: ' + element.book_info.price + '€</h6>\
                                         <h8 class="card-subtitle mb-2 text-muted"></h8>\
                                         <p class="card-text">Comprato da: ' + element.buyer_info.name + ' ' + element.buyer_info.last_name + '</p>\
-                                        <section class="p-4 d-flex justify-content-center text-center w-100">\
-                                            <ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="3">\
-                                                <li>\
-                                                <i class="fa-star fa-sm text-primary fas active"></i>\
-                                                </li>\
-                                                <li>\
-                                                <i class="fa-star fa-sm text-primary fas active"></i>\
-                                                </li>\
-                                                <li>\
-                                                <i class="fa-star fa-sm text-primary fas active"></i>\
-                                                </li>\
-                                                <li>\
-                                                <i class="far fa-star fa-sm text-primary"></i>\
-                                                </li>\
-                                                <li>\
-                                                <i class="far fa-star fa-sm text-primary"></i>\
-                                                </li>\
-                                            </ul>\
-                                       </section>\
                                     </div>\
                                 </div>\
                             </div>';
@@ -83,3 +74,21 @@ $(document).ready(function (){
         }
         });
 })
+var value=0
+function selStar(num){
+    value = num+1;
+    for(var i=0; i<5;i++){
+        if(i<=num)
+            $("#star"+i).addClass("fas active");
+        else    
+            $("#star"+i).removeClass("fas active").addClass("far");
+    }
+}
+function vote(){
+    if(value==0)
+        alert("Error");
+    else{
+        //http POST request
+
+    }
+}
