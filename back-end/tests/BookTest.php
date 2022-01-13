@@ -253,7 +253,7 @@ class BookTest extends TestCase
                     'last_name' => $user->last_name,
                     'email' => $user->email,
                 ],
-                'average_vote' => 3,
+                'average_vote' => '3,0',
                 'book_reviews' => [
                     [
                         'vote' => 2,
