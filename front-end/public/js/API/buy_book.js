@@ -27,7 +27,7 @@ $(document).ready(function () {
           }
         },
         success: function (data) {
-          alert("book bought!");
+          alert("Acquisto avvenuto con successo!");
           location.reload();
         },
       });
