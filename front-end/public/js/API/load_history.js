@@ -25,6 +25,9 @@ $(document).ready(function () {
           element.book_info.title +
           ' </div>\
                                     <div class="card-body">\
+                                    <h6 class="card-subtitle mb-2 text-muted">ISBN: ' +
+          element.book_info.isbn.toUpperCase() +
+          '</h6>\
                                         <h6 class="card-subtitle mb-2 text-muted">Autore: ' +
           element.book_info.authors
             .toLowerCase()
@@ -89,6 +92,9 @@ $(document).ready(function () {
           element.book_info.title +
           ' </div>\
                                     <div class="card-body">\
+                                    <h6 class="card-subtitle mb-2 text-muted">ISBN: ' +
+          element.book_info.isbn.toUpperCase() +
+          '</h6>\
                                     <h6 class="card-subtitle mb-2 text-muted">Autore: ' +
           element.book_info.authors
             .toLowerCase()
