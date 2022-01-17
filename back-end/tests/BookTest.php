@@ -73,11 +73,13 @@ class BookTest extends TestCase
     {
         $this->refreshApplication();
 
+        /** @var User $reseller */
+        $reseller = User::factory()->create();
+        $book = Book::factory()->create([
+            'user_id' => $reseller->id,
+        ]);
         /** @var User $user */
         $user = User::factory()->create();
-        $book = Book::factory()->create([
-            'user_id' => $user->id,
-        ]);
         $this->actingAs($user);
 
         $this->get('book?' . http_build_query([
@@ -94,9 +96,9 @@ class BookTest extends TestCase
                 'gender' => $book->gender,
                 'price' => $book->price,
                 'reseller_info' => [
-                    'name' => $user->name,
-                    'last_name' => $user->last_name,
-                    'email' => $user->email,
+                    'name' => $reseller->name,
+                    'last_name' => $reseller->last_name,
+                    'email' => $reseller->email,
                 ],
                 'average_vote' => null,
                 'book_reviews' => [],
@@ -104,7 +106,27 @@ class BookTest extends TestCase
         ]);
 
         $this->get('book');
-        $this->seeStatusCode(422);
+        $this->seeStatusCode(200);
+        $this->seeJsonStructure([
+            'data' => [
+                '*' => [
+                    'id',
+                    'title',
+                    'isbn',
+                    'description',
+                    'authors',
+                    'gender',
+                    'price',
+                    'reseller_info' => [
+                        'name',
+                        'last_name',
+                        'email'
+                    ],
+                    'average_vote',
+                    'book_reviews'
+                ]
+            ]
+        ]);        
 
         $this->refreshApplication();
 
