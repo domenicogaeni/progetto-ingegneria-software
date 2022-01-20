@@ -6,7 +6,4 @@ $(document).ready(function(){
     $(".closeModal").click(function(){
         $("#myModal").modal('hide');
     })
-    $("#buttonDelete").click(function(){
-        alert("elimina libro");
-    })
 })

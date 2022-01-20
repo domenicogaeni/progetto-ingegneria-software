@@ -20,7 +20,4 @@ $(document).ready(function(){
             $("#alert_uncomplete").show();
         }
     })
-    $("#buttonDelete").click(function(){
-        alert("elimina libro");
-    })
 })

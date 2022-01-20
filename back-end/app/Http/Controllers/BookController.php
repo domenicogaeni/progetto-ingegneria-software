@@ -22,7 +22,7 @@ class BookController extends BaseController
                 'gender' => 'required|string|max:255',
             ],
             'search' => [
-                'value' => 'required|string',
+                'value' => 'string',
             ],
             'vote' => [
                 'vote' => 'required|integer|min:1|max:5',
@@ -76,13 +76,22 @@ class BookController extends BaseController
      */
     public function search(Request $request)
     {
-        $params = $request->only(['value']);
+        if ($request->input('value') !== null) {
+            $params = $request->only(['value']);
 
-        return Book::where(DB::raw('LOWER(title)'), 'like', '%' . strtolower($params['value']) . '%')
-            ->orWhere(DB::raw('LOWER(isbn)'), 'like', '%' . strtolower($params['value']) . '%')
-            ->orWhere(DB::raw('LOWER(authors)'), 'like', '%' . strtolower($params['value']) . '%')
-            ->orWhere(DB::raw('LOWER(gender)'), 'like', '%' . strtolower($params['value']) . '%')
+            return Book::where('user_id', '!=', Auth::user()->id)
+                ->where(DB::raw('LOWER(title)'), 'like', '%' . strtolower($params['value']) . '%')
+                ->orWhere(DB::raw('LOWER(isbn)'), 'like', '%' . strtolower($params['value']) . '%')
+                ->orWhere(DB::raw('LOWER(authors)'), 'like', '%' . strtolower($params['value']) . '%')
+                ->orWhere(DB::raw('LOWER(gender)'), 'like', '%' . strtolower($params['value']) . '%')
+                ->get();
+        }
+
+        return Book::where('user_id', '!=', Auth::user()->id)
+            ->orderBy('created_at', 'desc')
+            ->limit(20)
             ->get();
+        
     }
 
     /**

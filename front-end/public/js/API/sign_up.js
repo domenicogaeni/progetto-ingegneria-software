@@ -66,6 +66,7 @@ $(document).ready(function(){
       }else{
           //password sbagliate
           $('#inputPasswordConfirm').addClass('btn-danger');
+          alert("La password deve essere lunga almeno 12 caratteri!");
       }
   })
 });
