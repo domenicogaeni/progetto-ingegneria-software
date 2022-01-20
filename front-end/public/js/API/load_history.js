@@ -86,7 +86,7 @@ function selStar(num, init){
 }
 function vote(id_book, ind_value){
     if(value[ind_value]==0)
-        alert("Error");
+        alert("Inserisca un valore di voto!");
     else{
         var json_obj = {
             vote: value[ind_value],
