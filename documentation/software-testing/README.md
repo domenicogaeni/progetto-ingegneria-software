@@ -1,4 +1,4 @@
-# 🧪 Software testing @Domenico Gaeni
+# 🧪 Software testing e manutenibilità @Domenico Gaeni
 
 Durante lo sviluppo del back-end sono stati implementati dei test statici e dei test di unità.
 
