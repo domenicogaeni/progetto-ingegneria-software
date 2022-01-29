@@ -19,4 +19,6 @@
 
 Durante i meeting settimanali, definiamo i lavori da svolgere e creiamo delle issue su GitHub in modo da tracciare il lavoro svolto da ognuno di noi.
 
-🚧 Questo documento sarà in costante aggiornamento.
+## 🏁 Documentazione finale
+
+🏁 Tutta la documentazione è descritta nel seguente file: [Documento Finale](documentation/documentoFinale.pdf)

@@ -1,4 +1,4 @@
-# 🚧 Documentazione
+# 🏗️ Documentazione
 
 - 📚 Il testo del problema è disponibile qui: [testo](testo.md)
 - 🗺 Il project plan è disponibile qui: [project plan](projectPlan.md)
@@ -14,3 +14,5 @@
 - 🏛 Il capitolo in merito a Software Architecture è disponibile qui: [Software Architecture](softwareArchitecture.md)
 - 🪀 Il capitolo in merito a Software Design è disponibile qui: [Software Design](software-design.md)
 - 🧪 Il capitolo in merito a Software Testing è disponibile qui: [Software Testing](software-testing/README.md)
+
+🏁 Tutta la documentazione è descritta nel seguente file: [Documento Finale](documentoFinale.pdf)
