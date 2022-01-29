@@ -11,3 +11,6 @@
   - Schema ER: [Schema ER](modelling/er-schema/README.md)
   - Macchina a stati: [Order State Machine](modelling/order-state-machine/README.md)
   - Use case diagram: [Use Case Diagram](modelling/use_case_diagram/README.md)
+- 🏛 Il capitolo in merito a Software Architecture è disponibile qui: [Software Architecture](softwareArchitecture.md)
+- 🪀 Il capitolo in merito a Software Design è disponibile qui: [Software Design](software-design.md)
+- 🧪 Il capitolo in merito a Software Testing è disponibile qui: [Software Testing](software-testing/README.md)
