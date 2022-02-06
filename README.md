@@ -22,3 +22,5 @@ Durante i meeting settimanali, definiamo i lavori da svolgere e creiamo delle is
 ## 🏁 Documentazione finale
 
 🏁 Tutta la documentazione è descritta nel seguente file: [Documento Finale](documentation/documentoFinale.pdf)
+
+🏁 La presentazione del progetto è disponibile qui: [Presentazione](documentation/Presentazione.pdf)

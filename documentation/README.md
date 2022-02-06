@@ -16,3 +16,5 @@
 - 🧪 Il capitolo in merito a Software Testing è disponibile qui: [Software Testing](software-testing/README.md)
 
 🏁 Tutta la documentazione è descritta nel seguente file: [Documento Finale](documentoFinale.pdf)
+
+🏁 La presentazione del progetto è disponibile qui: [Presentazione](Presentazione.pdf)
